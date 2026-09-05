@@ -150,7 +150,7 @@ export function Remote({ initial }: { initial: GameWithBoard }) {
                 Nullstill spillet
               </Button>
             )}
-            <Link href={`/spill/${game.code}`} className="text-center text-sm text-cream-dim underline-offset-4 hover:text-cream hover:underline">
+            <Link href={`/spill/${game.id}`} className="text-center text-sm text-cream-dim underline-offset-4 hover:text-cream hover:underline">
               Åpne storskjermen på denne enheten
             </Link>
           </div>

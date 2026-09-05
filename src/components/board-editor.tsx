@@ -103,8 +103,8 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
     setStarting(true);
     try {
       if (saveState === "dirty") await persist();
-      const { code } = await createGame(board.id);
-      router.push(`/spill/${code}`);
+      const { id } = await createGame(board.id);
+      router.push(`/spill/${id}`);
     } catch (caught) {
       setSaveError(caught instanceof Error ? caught.message : "Klarte ikke å starte spillet.");
       setStarting(false);

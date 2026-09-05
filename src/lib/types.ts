@@ -73,6 +73,7 @@ export type GameAction =
   | { type: "reset" };
 
 export type Game = {
+  id: string;
   code: string;
   boardId: string;
   state: GameState;

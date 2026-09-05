@@ -5,8 +5,8 @@ Lag ditt eget Jeopardy-brett og spill det på storskjerm med mobilen som fjernko
 ## Slik fungerer det
 
 1. **Lag et brett** på `/ny`. Velg antall kategorier og rader, skriv spørsmål og svar som tekst, bilde eller begge. Du får en redigeringslenke med en nøkkel; den er det eneste som gir redigeringstilgang, så ta vare på den.
-2. **Start et spill** fra brettet. Spillet får en romkode på fire bokstaver og åpnes på `/spill/KODE`. Vis den siden i fullskjerm på PC-en som er koblet til TV-en (trykk `F`).
-3. **Skann QR-koden** øverst til høyre med mobilen, eller gå til `/koble-til` og skriv koden. Fjernkontrollen velger spørsmål, viser svar og gir poeng. Skjermen oppdateres umiddelbart.
+2. **Start et spill** fra brettet. Spillet får en hemmelig romkode på fire bokstaver og åpnes på `/spill/<spill-id>`. Vis den siden i fullskjerm på PC-en som er koblet til TV-en (trykk `F`).
+3. **Trykk «Koble til mobil»** øverst til høyre for å vise QR-koden og romkoden, skann eller skriv koden på `/koble-til`. Koden er hemmelig: alle som har den kan styre spillet, så vis den bare når du selv kobler til. Fjernkontrollen velger spørsmål, viser svar og gir poeng. Skjermen oppdateres umiddelbart.
 
 Brettet kan også styres direkte på PC-en: klikk på en rute, `Enter`/mellomrom viser svar og lukker, `Esc` lukker, `U` angrer siste poeng, `Q` viser QR-koden stort.
 

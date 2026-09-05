@@ -6,20 +6,24 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import type { Board, Game, GameAction, GameState, GameWithBoard } from "@/lib/types";
 
 type GameRow = {
+  id: string;
   code: string;
   board_id: string;
   state: unknown;
   version: number;
 };
 
+const isUuid = (value: string) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+
 const toGame = (row: GameRow): Game => ({
+  id: row.id,
   code: row.code,
   boardId: row.board_id,
   state: isGameState(row.state) ? row.state : createInitialState(),
   version: row.version,
 });
 
-export async function createGame(boardId: string): Promise<{ code: string }> {
+export async function createGame(boardId: string): Promise<{ id: string; code: string }> {
   const supabase = supabaseAdmin();
   const { data: board, error: boardError } = await supabase.from("boards").select("id").eq("id", boardId).maybeSingle();
   if (boardError) throw new Error(boardError.message);
@@ -27,20 +31,31 @@ export async function createGame(boardId: string): Promise<{ code: string }> {
 
   for (let attempt = 0; attempt < 8; attempt += 1) {
     const code = randomCode(attempt < 5 ? 4 : 5);
-    const { error } = await supabase.from("games").insert({ board_id: boardId, code, state: createInitialState() });
-    if (!error) return { code };
+    const { data, error } = await supabase
+      .from("games")
+      .insert({ board_id: boardId, code, state: createInitialState() })
+      .select("id, code")
+      .single();
+    if (!error && data) return { id: data.id, code: data.code };
     if (error.code !== "23505") throw new Error(error.message);
   }
   throw new Error("Klarte ikke å lage en romkode. Prøv igjen.");
 }
 
-export async function getGame(rawCode: string): Promise<GameWithBoard | null> {
+export async function findGameByCode(rawCode: string): Promise<{ id: string } | null> {
   const code = normalizeCode(rawCode);
   if (code.length < 4) return null;
+  const { data, error } = await supabaseAdmin().from("games").select("id").eq("code", code).maybeSingle();
+  if (error) throw new Error(error.message);
+  return data ? { id: data.id } : null;
+}
+
+export async function getGame(id: string): Promise<GameWithBoard | null> {
+  if (!isUuid(id)) return null;
   const { data, error } = await supabaseAdmin()
     .from("games")
-    .select("code, board_id, state, version, boards(id, title, subtitle, content, created_at, updated_at)")
-    .eq("code", code)
+    .select("id, code, board_id, state, version, boards(id, title, subtitle, content, created_at, updated_at)")
+    .eq("id", id)
     .maybeSingle();
   if (error) throw new Error(error.message);
   if (!data) return null;
@@ -58,19 +73,18 @@ export async function getGame(rawCode: string): Promise<GameWithBoard | null> {
   return { ...toGame(raw), board };
 }
 
-export async function getGameState(rawCode: string): Promise<Game | null> {
-  const code = normalizeCode(rawCode);
-  if (code.length < 4) return null;
-  const { data, error } = await supabaseAdmin().from("games").select("code, board_id, state, version").eq("code", code).maybeSingle();
+export async function getGameState(id: string): Promise<Game | null> {
+  if (!isUuid(id)) return null;
+  const { data, error } = await supabaseAdmin().from("games").select("id, code, board_id, state, version").eq("id", id).maybeSingle();
   if (error) throw new Error(error.message);
   return data ? toGame(data as GameRow) : null;
 }
 
-export async function dispatchGameAction(rawCode: string, action: GameAction): Promise<Game> {
-  const code = normalizeCode(rawCode);
+export async function dispatchGameAction(id: string, action: GameAction): Promise<Game> {
+  if (!isUuid(id)) throw new Error("Ugyldig spill.");
   const supabase = supabaseAdmin();
   for (let attempt = 0; attempt < 6; attempt += 1) {
-    const { data, error } = await supabase.from("games").select("code, board_id, state, version").eq("code", code).maybeSingle();
+    const { data, error } = await supabase.from("games").select("id, code, board_id, state, version").eq("id", id).maybeSingle();
     if (error) throw new Error(error.message);
     if (!data) throw new Error("Spillet finnes ikke lenger.");
     const current = toGame(data as GameRow);
@@ -78,9 +92,9 @@ export async function dispatchGameAction(rawCode: string, action: GameAction): P
     const { data: updated, error: updateError } = await supabase
       .from("games")
       .update({ state: next, version: current.version + 1, updated_at: new Date().toISOString() })
-      .eq("code", code)
+      .eq("id", id)
       .eq("version", current.version)
-      .select("code, board_id, state, version")
+      .select("id, code, board_id, state, version")
       .maybeSingle();
     if (updateError) throw new Error(updateError.message);
     if (updated) return toGame(updated as GameRow);

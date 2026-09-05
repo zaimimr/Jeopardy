@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getGameState } from "@/lib/actions/games";
+import { findGameByCode } from "@/lib/actions/games";
 import { normalizeCode } from "@/lib/game";
 import { Button } from "./ui";
 
@@ -22,12 +22,12 @@ export function JoinForm() {
     setBusy(true);
     setError(null);
     try {
-      const game = await getGameState(normalized);
+      const game = await findGameByCode(normalized);
       if (!game) {
         setError("Fant ikke noe spill med den koden. Sjekk skjermen og prøv igjen.");
         return;
       }
-      router.push(`/spill/${game.code}/fjernkontroll`);
+      router.push(`/spill/${game.id}/fjernkontroll`);
     } catch {
       setError("Fikk ikke kontakt med tjeneren. Prøv igjen.");
     } finally {

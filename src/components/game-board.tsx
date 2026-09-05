@@ -25,7 +25,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
   const [showQr, setShowQr] = useState(false);
   const origin = useClientValue(() => window.location.origin, "");
 
-  const remoteUrl = `${origin}/spill/${game.code}/fjernkontroll`;
+  const remoteUrl = `${origin}/spill/${game.id}/fjernkontroll`;
   const rows = useMemo(
     () => board.content.categories.reduce((max, category) => Math.max(max, category.clues.length), 0),
     [board],
@@ -93,18 +93,14 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
         <button
           type="button"
           onClick={() => setShowQr(true)}
-          className="brass-plate flex shrink-0 items-center gap-3 rounded-sm px-4 py-2 transition hover:brightness-110"
-          aria-label="Vis QR-kode for fjernkontroll"
+          className="brass-plate flex shrink-0 items-center gap-2 rounded-sm px-4 py-2 text-[clamp(0.8rem,1vw,1rem)] font-semibold uppercase tracking-[0.18em] transition hover:brightness-110"
+          aria-label="Vis romkode og QR-kode for fjernkontroll"
         >
-          <span className="flex flex-col items-start leading-none">
-            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] opacity-80">Romkode</span>
-            <span className="numeral text-[clamp(1.3rem,2.4vw,2.4rem)] font-bold tracking-[0.12em]">{game.code}</span>
-          </span>
-          {origin ? (
-            <span className="rounded-[3px] bg-cream p-1">
-              <QRCodeSVG value={remoteUrl} size={44} bgColor="#fff2d6" fgColor="#2a1c08" level="M" />
-            </span>
-          ) : null}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
+            <rect x="4.5" y="1.5" width="7" height="13" rx="1.5" />
+            <path d="M7 12.5h2" />
+          </svg>
+          Koble til mobil
         </button>
         </div>
       </header>
@@ -186,10 +182,12 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
             </div>
           </div>
           <p className="text-center text-[clamp(1rem,1.6vw,1.5rem)] text-cream-dim">
-            eller gå til <span className="text-cream">{origin.replace(/^https?:\/\//, "")}/koble-til</span> og skriv{" "}
-            <span className="numeral text-brass-light tracking-[0.15em]">{game.code}</span>
+            eller gå til <span className="text-cream">{origin.replace(/^https?:\/\//, "")}/koble-til</span> og skriv
           </p>
-          <p className="text-sm uppercase tracking-[0.2em] text-cream-dim">Trykk hvor som helst for å lukke</p>
+          <p className="numeral text-[clamp(2.4rem,5vw,5rem)] font-bold tracking-[0.2em] text-brass-light">{game.code}</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-cream-dim">
+            Alle som har koden kan styre spillet. Trykk hvor som helst for å lukke
+          </p>
         </div>
       ) : null}
     </main>

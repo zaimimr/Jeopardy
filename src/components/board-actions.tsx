@@ -19,8 +19,8 @@ export function BoardActions({ boardId, title }: { boardId: string; title: strin
     setBusy("start");
     setError(null);
     try {
-      const { code } = await createGame(boardId);
-      router.push(`/spill/${code}`);
+      const { id } = await createGame(boardId);
+      router.push(`/spill/${id}`);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Klarte ikke å starte spillet.");
       setBusy(null);

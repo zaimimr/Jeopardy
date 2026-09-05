@@ -33,12 +33,12 @@ export function useGame(initial: Game) {
     const supabase = supabaseBrowser();
     if (!supabase) return;
     if (!originRef.current) originRef.current = crypto.randomUUID();
-    const channel = supabase.channel(`game:${initial.code}`, { config: { broadcast: { self: false } } });
+    const channel = supabase.channel(`game:${initial.id}`, { config: { broadcast: { self: false } } });
     channel
       .on("broadcast", { event: "state" }, ({ payload }) => {
         const message = payload as Broadcast;
         if (message.origin === originRef.current) return;
-        accept({ code: initial.code, boardId: initial.boardId, state: message.state, version: message.version });
+        accept({ id: initial.id, code: initial.code, boardId: initial.boardId, state: message.state, version: message.version });
       })
       .subscribe((state) => {
         if (state === "SUBSCRIBED") setStatus("live");
@@ -49,14 +49,14 @@ export function useGame(initial: Game) {
       channelRef.current = null;
       supabase.removeChannel(channel);
     };
-  }, [initial.code, initial.boardId, accept]);
+  }, [initial.id, initial.code, initial.boardId, accept]);
 
   useEffect(() => {
     let cancelled = false;
     const poll = async () => {
       if (document.visibilityState === "hidden") return;
       try {
-        const latest = await getGameState(initial.code);
+        const latest = await getGameState(initial.id);
         if (!cancelled && latest) accept(latest);
       } catch {
         return;
@@ -74,7 +74,7 @@ export function useGame(initial: Game) {
       document.removeEventListener("visibilitychange", onVisible);
       window.removeEventListener("focus", onVisible);
     };
-  }, [initial.code, status, accept]);
+  }, [initial.id, status, accept]);
 
   const dispatch = useCallback(
     async (action: GameAction) => {
@@ -82,7 +82,7 @@ export function useGame(initial: Game) {
       setPending((count) => count + 1);
       setError(null);
       try {
-        const result = await dispatchGameAction(initial.code, action);
+        const result = await dispatchGameAction(initial.id, action);
         accept(result);
         channelRef.current?.send({
           type: "broadcast",
@@ -92,7 +92,7 @@ export function useGame(initial: Game) {
       } catch (caught) {
         setError(caught instanceof Error ? caught.message : "Noe gikk galt.");
         try {
-          const latest = await getGameState(initial.code);
+          const latest = await getGameState(initial.id);
           if (latest) {
             versionRef.current = 0;
             accept(latest);
@@ -104,7 +104,7 @@ export function useGame(initial: Game) {
         setPending((count) => count - 1);
       }
     },
-    [initial.code, accept],
+    [initial.id, accept],
   );
 
   return { game, dispatch, status, error, pending: pending > 0 };
