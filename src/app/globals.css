@@ -1,21 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --stage: #120d0a;
-  --stage-deep: #070403;
-  --stage-floor: #1d140e;
-  --velvet: #8b1e2d;
-  --velvet-deep: #56111c;
-  --brass: #d4a648;
-  --brass-light: #f3dc93;
-  --brass-dark: #7d5a1c;
-  --brass-ink: #2a1c08;
-  --cream: #fff2d6;
-  --cream-dim: rgba(255, 242, 214, 0.64);
-  --cream-faint: rgba(255, 242, 214, 0.36);
-  --lamp: #ffe2a3;
-  --lamp-glow: rgba(255, 196, 105, 0.45);
-  --panel-unlit: #1a120d;
+  --stage: #0b1220;
+  --stage-deep: #070b16;
+  --stage-floor: #121c31;
+  --velvet: #1a2742;
+  --velvet-deep: #111a2e;
+  --brass: #cfd7e6;
+  --brass-light: #eef2f8;
+  --brass-dark: #8b96ab;
+  --brass-ink: #101a2c;
+  --cream: #eef2f8;
+  --cream-dim: rgba(238, 242, 248, 0.68);
+  --cream-faint: rgba(238, 242, 248, 0.34);
+  --lamp: #f4f7fb;
+  --lamp-glow: rgba(160, 180, 220, 0.22);
+  --glow-size: 0px;
+  --panel-fg: #f4f7fb;
+  --panel-a: #1b2a45;
+  --panel-b: #13203a;
+  --panel-unlit: #0e1628;
+  --plate-a: #eef2f8;
+  --plate-b: #cfd7e6;
+  --plate-c: #b3bfd3;
+  --plate-shadow: none;
+  --spot: rgba(120, 150, 210, 0.16);
+  --wash: rgba(20, 40, 80, 0.35);
   --bib-yellow: #f3c942;
   --bib-green: #48b97c;
   --bib-red: #e05252;
@@ -96,9 +106,10 @@ textarea {
 
 @utility stage-spotlight {
   background-color: var(--stage);
+  color: var(--cream);
   background-image:
-    radial-gradient(ellipse 70% 55% at 50% 8%, rgba(255, 226, 163, 0.22), rgba(255, 226, 163, 0) 70%),
-    radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139, 30, 45, 0.35), rgba(139, 30, 45, 0) 70%),
+    radial-gradient(ellipse 70% 55% at 50% 8%, var(--spot), transparent 70%),
+    radial-gradient(ellipse 120% 60% at 50% 100%, var(--wash), transparent 70%),
     linear-gradient(180deg, var(--stage) 0%, var(--stage-deep) 100%);
 }
 
@@ -111,46 +122,38 @@ textarea {
 
 @utility brass-plate {
   color: var(--brass-ink);
-  background-image: linear-gradient(
-    168deg,
-    #f6e2a4 0%,
-    #d9ad4f 22%,
-    #b5842c 48%,
-    #d4a648 62%,
-    #f0d489 82%,
-    #b98a30 100%
-  );
+  background-image: linear-gradient(168deg, var(--plate-a) 0%, var(--plate-b) 55%, var(--plate-c) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 248, 220, 0.85),
-    inset 0 -2px 0 rgba(60, 40, 8, 0.55),
-    0 6px 18px -6px rgba(0, 0, 0, 0.7);
-  text-shadow: 0 1px 0 rgba(255, 245, 215, 0.55);
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.28),
+    0 6px 18px -6px rgba(0, 0, 0, 0.5);
+  text-shadow: var(--plate-shadow);
 }
 
 @utility brass-rim {
-  border: 1px solid rgba(212, 166, 72, 0.55);
+  border: 1px solid color-mix(in srgb, var(--brass) 50%, transparent);
   box-shadow:
-    inset 0 1px 0 rgba(243, 220, 147, 0.25),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    inset 0 1px 0 color-mix(in srgb, var(--brass-light) 22%, transparent),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
 }
 
 @utility panel-lit {
-  color: var(--cream);
+  color: var(--panel-fg);
   background-image:
-    radial-gradient(ellipse 80% 90% at 50% 100%, rgba(255, 196, 105, 0.34), rgba(255, 196, 105, 0) 70%),
-    linear-gradient(180deg, #3a2612 0%, #22160c 100%);
+    radial-gradient(ellipse 80% 90% at 50% 100%, var(--lamp-glow), transparent 70%),
+    linear-gradient(180deg, var(--panel-a) 0%, var(--panel-b) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 226, 163, 0.35),
-    inset 0 0 0 1px rgba(212, 166, 72, 0.4),
-    0 0 28px -4px var(--lamp-glow),
-    0 10px 24px -14px rgba(0, 0, 0, 0.9);
-  text-shadow: 0 0 18px rgba(255, 226, 163, 0.6);
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 0 0 1px color-mix(in srgb, var(--brass) 38%, transparent),
+    0 0 var(--glow-size) -4px var(--lamp-glow),
+    0 10px 24px -14px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 var(--glow-size) var(--lamp-glow);
 }
 
 @utility panel-unlit {
   color: var(--cream-faint);
   background: var(--panel-unlit);
-  box-shadow: inset 0 0 0 1px rgba(212, 166, 72, 0.14);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brass) 14%, transparent);
   text-shadow: none;
 }
 

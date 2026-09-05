@@ -3,6 +3,7 @@
 import { QRCodeSVG } from "qrcode.react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { findClue } from "@/lib/game";
+import { themeStyle } from "@/lib/themes";
 import { useClientValue } from "@/lib/use-client-value";
 import { useGame, type SyncStatus } from "@/lib/use-game";
 import type { GameWithBoard, Team } from "@/lib/types";
@@ -72,7 +73,10 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
   }, [advance, dispatch, showQr, state.active, board.content.categories.length]);
 
   return (
-    <main className="stage-spotlight relative flex h-dvh w-full flex-col overflow-hidden px-[2.2vw] pb-[1.6vh] pt-[1.4vh] text-cream">
+    <main
+      style={themeStyle(board.content.theme)}
+      className="stage-spotlight relative flex h-dvh w-full flex-col overflow-hidden px-[2.2vw] pb-[1.6vh] pt-[1.4vh] text-cream"
+    >
       <header className="flex items-end justify-between gap-6 pb-[1.4vh]">
         <div className="min-w-0">
           <h1 className="font-display truncate text-[clamp(1.6rem,3.4vw,3.6rem)] font-medium leading-none tracking-tight">

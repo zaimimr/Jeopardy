@@ -7,6 +7,7 @@ import { getBoardForEdit, saveBoard } from "@/lib/actions/boards";
 import { createCategory, createClue, hasMedia, MAX_COLUMNS, MAX_ROWS, POINT_STEP } from "@/lib/board";
 import { createGame } from "@/lib/actions/games";
 import { localBoardKey, rememberBoard } from "@/lib/local-boards";
+import { themeList, themeStyle, type ThemeId } from "@/lib/themes";
 import { useClientValue, useOrigin } from "@/lib/use-client-value";
 import type { Board, BoardContent, Category, Clue, Media } from "@/lib/types";
 import { uploadImage } from "@/lib/upload";
@@ -144,7 +145,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
   const selectedCategory = selection ? board.content.categories.find((c) => c.id === selection.categoryId) ?? null : null;
 
   return (
-    <div className="stage-spotlight flex min-h-dvh flex-col">
+    <div style={themeStyle(board.content.theme)} className="stage-spotlight flex min-h-dvh flex-col">
       <SiteHeader
         right={
           <>
@@ -178,6 +179,8 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
         </section>
 
         <ShareLink boardId={board.id} editKey={key} />
+
+        <ThemePicker value={board.content.theme ?? "midnatt"} onChange={(theme) => updateContent((c) => ({ ...c, theme }))} />
 
         <section className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -288,6 +291,39 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
         ) : null}
       </main>
     </div>
+  );
+}
+
+function ThemePicker({ value, onChange }: { value: ThemeId; onChange: (theme: ThemeId) => void }) {
+  return (
+    <section className="flex flex-col gap-3" aria-label="Fargetema">
+      <div className="flex items-baseline justify-between gap-3">
+        <h2 className="font-display text-2xl font-medium">Fargetema</h2>
+        <p className="text-sm text-cream-dim">Gjelder storskjermen, mobilen og denne siden.</p>
+      </div>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7" role="radiogroup">
+        {themeList.map((theme) => {
+          const selected = theme.id === value;
+          return (
+            <button
+              key={theme.id}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              onClick={() => onChange(theme.id)}
+              className={`tap flex flex-col gap-2 rounded-md p-2 text-left transition ${selected ? "brass-plate" : "brass-rim bg-stage-floor/60 hover:bg-stage-floor"}`}
+            >
+              <span className="flex h-9 overflow-hidden rounded-sm" aria-hidden>
+                {theme.swatch.map((color) => (
+                  <span key={color} className="flex-1" style={{ background: color }} />
+                ))}
+              </span>
+              <span className="text-[15px] leading-tight">{theme.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 

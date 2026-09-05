@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { findClue, MAX_TEAMS, rankedTeams } from "@/lib/game";
 import { BIB_COLORS, type GameWithBoard, type Team } from "@/lib/types";
+import { themeStyle } from "@/lib/themes";
 import { useGame, type SyncStatus } from "@/lib/use-game";
 import { BibDot, bibLabel, bibVar } from "./team-bib";
 import { Button } from "./ui";
@@ -30,7 +31,7 @@ export function Remote({ initial }: { initial: GameWithBoard }) {
   const lastTeam = lastEvent ? state.teams.find((team) => team.id === lastEvent.teamId) : null;
 
   return (
-    <main className="stage-spotlight flex min-h-dvh flex-col text-cream">
+    <main style={themeStyle(board.content.theme)} className="stage-spotlight flex min-h-dvh flex-col text-cream">
       <header className="flex items-center justify-between gap-3 px-4 pb-2 pt-[max(0.75rem,env(safe-area-inset-top))]">
         <div className="min-w-0">
           <p className="font-display truncate text-xl font-medium leading-tight">{board.title}</p>

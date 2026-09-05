@@ -1,3 +1,5 @@
+import type { ThemeId } from "./themes";
+
 export type Media = {
   text?: string;
   image?: string;
@@ -18,6 +20,7 @@ export type Category = {
 
 export type BoardContent = {
   categories: Category[];
+  theme?: ThemeId;
 };
 
 export type Board = {

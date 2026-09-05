@@ -1,4 +1,5 @@
 import { shortId } from "./game";
+import { DEFAULT_THEME, isThemeId } from "./themes";
 import type { BoardContent, Category, Clue, Media } from "./types";
 
 export const DEFAULT_COLUMNS = 5;
@@ -21,6 +22,7 @@ export const createCategory = (title: string, rows: number): Category => ({
 });
 
 export const createEmptyContent = (columns = DEFAULT_COLUMNS, rows = DEFAULT_ROWS): BoardContent => ({
+  theme: DEFAULT_THEME,
   categories: Array.from({ length: columns }, (_, index) => createCategory(`Kategori ${index + 1}`, rows)),
 });
 
@@ -54,7 +56,9 @@ const cleanMedia = (value: unknown): Media => {
 
 export const sanitizeContent = (value: unknown): BoardContent => {
   if (!value || typeof value !== "object") return createEmptyContent();
-  const raw = (value as Record<string, unknown>).categories;
+  const record = value as Record<string, unknown>;
+  const raw = record.categories;
+  const theme = isThemeId(record.theme) ? record.theme : DEFAULT_THEME;
   if (!Array.isArray(raw)) return createEmptyContent();
   const categories: Category[] = raw.slice(0, MAX_COLUMNS).map((entry, columnIndex) => {
     const record = (entry ?? {}) as Record<string, unknown>;
@@ -74,5 +78,5 @@ export const sanitizeContent = (value: unknown): BoardContent => {
       }),
     };
   });
-  return { categories };
+  return { theme, categories };
 };
