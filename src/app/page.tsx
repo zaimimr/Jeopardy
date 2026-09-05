@@ -21,8 +21,8 @@ export default function HomePage() {
       <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-16 px-5 pb-20 pt-8 md:px-8 md:pt-14">
         <section className="grid items-center gap-10 md:grid-cols-[1.15fr_1fr]">
           <div className="flex flex-col gap-7">
-            <h1 className="font-display text-balance text-[clamp(2.6rem,6vw,5.4rem)] font-medium leading-[0.98] tracking-tight">
-              Kveldens quiz, <em className="text-brass-light">rett på storskjermen.</em>
+            <h1 className="font-display text-balance text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.98] tracking-tight">
+              Kveldens quiz, <span className="text-brass-light">rett på storskjermen.</span>
             </h1>
             <p className="max-w-[46ch] text-pretty text-xl leading-relaxed text-cream-dim">
               Lag et Jeopardy-brett med egne kategorier, spørsmål og bilder. Vis det på TV-en, og styr alt fra mobilen mens
@@ -38,8 +38,8 @@ export default function HomePage() {
             </div>
           </div>
           <div aria-hidden className="relative mx-auto w-full max-w-sm">
-            <div className="absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle,rgba(255,226,163,0.28),rgba(255,226,163,0)_70%)]" />
-            <div className="brass-plate rounded-sm px-4 py-2 text-center font-display text-lg font-semibold tracking-wide">
+            <div className="absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle,var(--spot),transparent_70%)]" />
+            <div className="brass-plate rounded-sm px-4 py-2 text-center font-display text-lg tracking-wide">
               Kategori
             </div>
             <ul className="mt-2 flex flex-col gap-2">
@@ -65,7 +65,7 @@ export default function HomePage() {
             },
             {
               title: "Vis på storskjerm",
-              body: "Start et spill og åpne det på PC-en som står koblet til TV-en. Romkoden og QR-koden står øverst til høyre.",
+              body: "Start et spill og åpne det på PC-en som står koblet til TV-en. Trykk «Koble til mobil» øverst til høyre for QR-kode og romkode.",
             },
             {
               title: "Styr fra mobilen",
@@ -73,7 +73,7 @@ export default function HomePage() {
             },
           ].map((step) => (
             <div key={step.title} className="flex flex-col gap-3 border-t border-brass/40 pt-5">
-              <h2 className="font-display text-2xl font-medium">{step.title}</h2>
+              <h2 className="font-display text-2xl">{step.title}</h2>
               <p className="text-pretty leading-relaxed text-cream-dim">{step.body}</p>
             </div>
           ))}

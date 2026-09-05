@@ -34,7 +34,7 @@ export function Remote({ initial }: { initial: GameWithBoard }) {
     <main style={themeStyle(board.content.theme)} className="stage-spotlight flex min-h-dvh flex-col text-cream">
       <header className="flex items-center justify-between gap-3 px-4 pb-2 pt-[max(0.75rem,env(safe-area-inset-top))]">
         <div className="min-w-0">
-          <p className="font-display truncate text-xl font-medium leading-tight">{board.title}</p>
+          <p className="font-display truncate text-xl leading-tight">{board.title}</p>
           <p className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-cream-dim">
             <span
               aria-hidden
@@ -189,7 +189,7 @@ function MiniBoard({
         }}
       >
         {board.content.categories.map((category) => (
-          <div key={category.id} className="brass-plate flex min-h-9 items-center justify-center rounded-sm px-1 text-center font-display text-[11px] font-semibold leading-tight">
+          <div key={category.id} className="brass-plate flex min-h-9 items-center justify-center rounded-sm px-1 text-center font-display text-[11px] leading-tight">
             <span className="line-clamp-2">{category.title}</span>
           </div>
         ))}
@@ -296,7 +296,7 @@ function ActiveClue({
   return (
     <div className="anim-envelope flex flex-1 flex-col gap-4">
       <div className="flex items-center justify-between gap-3">
-        <span className="brass-plate truncate rounded-sm px-3 py-1.5 font-display text-base font-semibold">{categoryTitle}</span>
+        <span className="brass-plate truncate rounded-sm px-3 py-1.5 font-display text-base">{categoryTitle}</span>
         <span className="numeral text-3xl text-lamp">{formatPoints(points)}</span>
       </div>
       <div className="brass-rim flex flex-1 flex-col items-center justify-center gap-5 rounded-md bg-stage-floor/70 px-5 py-8 text-center">
@@ -304,7 +304,7 @@ function ActiveClue({
           {questionText?.trim() || <span className="text-cream-dim">Bilde eller tomt</span>}
         </p>
         {phase === "answer" ? (
-          <p className="font-display text-balance text-[clamp(2rem,9vw,3.6rem)] font-medium leading-[1.05] text-brass-light">
+          <p className="font-display text-balance text-[clamp(2rem,9vw,3.6rem)] leading-[1.05] text-brass-light">
             {answerText?.trim() || <span className="text-cream-dim">Bilde eller tomt</span>}
           </p>
         ) : (

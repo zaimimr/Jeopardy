@@ -1,98 +1,106 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-05T12:40:00+02:00",
+  "generatedAt": "2026-09-05T14:10:00+02:00",
   "title": "Design System: Jeopardy",
   "extensions": {
     "colorMeta": {
       "brass": {
         "role": "primary",
-        "displayName": "Brass",
-        "canonical": "#d4a648",
-        "tonalRamp": ["#2a1c08", "#4a3210", "#7d5a1c", "#a8802a", "#d4a648", "#e3bf6a", "#f3dc93", "#faf0cf"]
+        "displayName": "Accent (role name brass; silver in the default theme)",
+        "canonical": "var(--brass)",
+        "tonalRamp": ["#101a2c", "#2a3a56", "#4d5c78", "#6f7d98", "#8b96ab", "#b3bfd3", "#cfd7e6", "#eef2f8"]
       },
       "brass-light": {
         "role": "primary",
-        "displayName": "Brass Light",
-        "canonical": "#f3dc93",
-        "tonalRamp": ["#2a1c08", "#4a3210", "#7d5a1c", "#a8802a", "#d4a648", "#e3bf6a", "#f3dc93", "#faf0cf"]
+        "displayName": "Accent Light",
+        "canonical": "var(--brass-light)",
+        "tonalRamp": ["#101a2c", "#2a3a56", "#4d5c78", "#6f7d98", "#8b96ab", "#b3bfd3", "#cfd7e6", "#eef2f8"]
       },
       "brass-dark": {
         "role": "primary",
-        "displayName": "Brass Dark",
-        "canonical": "#7d5a1c",
-        "tonalRamp": ["#2a1c08", "#4a3210", "#7d5a1c", "#a8802a", "#d4a648", "#e3bf6a", "#f3dc93", "#faf0cf"]
+        "displayName": "Accent Dark",
+        "canonical": "var(--brass-dark)",
+        "tonalRamp": ["#101a2c", "#2a3a56", "#4d5c78", "#6f7d98", "#8b96ab", "#b3bfd3", "#cfd7e6", "#eef2f8"]
       },
       "brass-ink": {
         "role": "primary",
-        "displayName": "Brass Ink",
-        "canonical": "#2a1c08",
-        "tonalRamp": ["#2a1c08", "#4a3210", "#7d5a1c", "#a8802a", "#d4a648", "#e3bf6a", "#f3dc93", "#faf0cf"]
+        "displayName": "Plate Ink",
+        "canonical": "var(--brass-ink)",
+        "tonalRamp": ["#101a2c", "#2a3a56", "#4d5c78", "#6f7d98", "#8b96ab", "#b3bfd3", "#cfd7e6", "#eef2f8"]
       },
+      "plate-a": { "role": "primary", "displayName": "Plate stop A (light)", "canonical": "var(--plate-a)" },
+      "plate-b": { "role": "primary", "displayName": "Plate stop B (mid)", "canonical": "var(--plate-b)" },
+      "plate-c": { "role": "primary", "displayName": "Plate stop C (dark)", "canonical": "var(--plate-c)" },
       "velvet": {
         "role": "secondary",
         "displayName": "Velvet",
-        "canonical": "#8b1e2d",
-        "tonalRamp": ["#2a0509", "#56111c", "#8b1e2d", "#ac2f41", "#c94a5c", "#dd7383", "#eba3ad", "#f7d6db"]
+        "canonical": "var(--velvet)",
+        "tonalRamp": ["#070b16", "#111a2e", "#1a2742", "#25365a", "#334874", "#4d648f", "#7a8fb5", "#b6c3da"]
       },
       "velvet-deep": {
         "role": "secondary",
         "displayName": "Velvet Deep",
-        "canonical": "#56111c",
-        "tonalRamp": ["#2a0509", "#56111c", "#8b1e2d", "#ac2f41", "#c94a5c", "#dd7383", "#eba3ad", "#f7d6db"]
+        "canonical": "var(--velvet-deep)",
+        "tonalRamp": ["#070b16", "#111a2e", "#1a2742", "#25365a", "#334874", "#4d648f", "#7a8fb5", "#b6c3da"]
       },
+      "wash": { "role": "secondary", "displayName": "Stage Wash (bottom bleed)", "canonical": "var(--wash)" },
+      "spot": { "role": "secondary", "displayName": "Spotlight Pool (top)", "canonical": "var(--spot)" },
       "lamp": {
         "role": "tertiary",
-        "displayName": "Lamp",
-        "canonical": "#ffe2a3",
-        "tonalRamp": ["#3a2612", "#6b4a1e", "#9c6f2a", "#cc9640", "#f0b85c", "#ffc469", "#ffe2a3", "#fff4dc"]
+        "displayName": "Lamp (points readout)",
+        "canonical": "var(--lamp)",
+        "tonalRamp": ["#1b2a45", "#2f4368", "#4a6190", "#6d84ad", "#93a7c8", "#b8c6dd", "#d9e1ee", "#f4f7fb"]
       },
       "lamp-glow": {
         "role": "tertiary",
-        "displayName": "Lamp Glow",
-        "canonical": "rgba(255, 196, 105, 0.45)",
-        "tonalRamp": ["#3a2612", "#6b4a1e", "#9c6f2a", "#cc9640", "#f0b85c", "#ffc469", "#ffe2a3", "#fff4dc"]
+        "displayName": "Lamp Glow (reach is --glow-size, 0px outside Studio)",
+        "canonical": "var(--lamp-glow)",
+        "tonalRamp": ["#1b2a45", "#2f4368", "#4a6190", "#6d84ad", "#93a7c8", "#b8c6dd", "#d9e1ee", "#f4f7fb"]
       },
+      "panel-a": { "role": "tertiary", "displayName": "Panel face top", "canonical": "var(--panel-a)" },
+      "panel-b": { "role": "tertiary", "displayName": "Panel face bottom", "canonical": "var(--panel-b)" },
+      "panel-fg": { "role": "tertiary", "displayName": "Panel numeral ink", "canonical": "var(--panel-fg)" },
       "stage": {
         "role": "neutral",
         "displayName": "Stage",
-        "canonical": "#120d0a",
-        "tonalRamp": ["#070403", "#120d0a", "#1a120d", "#1d140e", "#3a2a1f", "#6a5546", "#a8927f", "#fff2d6"]
+        "canonical": "var(--stage)",
+        "tonalRamp": ["#070b16", "#0b1220", "#0e1628", "#121c31", "#1b2a45", "#3a4a68", "#7d8aa5", "#eef2f8"]
       },
       "stage-deep": {
         "role": "neutral",
         "displayName": "Stage Deep",
-        "canonical": "#070403",
-        "tonalRamp": ["#070403", "#120d0a", "#1a120d", "#1d140e", "#3a2a1f", "#6a5546", "#a8927f", "#fff2d6"]
+        "canonical": "var(--stage-deep)",
+        "tonalRamp": ["#070b16", "#0b1220", "#0e1628", "#121c31", "#1b2a45", "#3a4a68", "#7d8aa5", "#eef2f8"]
       },
       "stage-floor": {
         "role": "neutral",
         "displayName": "Stage Floor",
-        "canonical": "#1d140e",
-        "tonalRamp": ["#070403", "#120d0a", "#1a120d", "#1d140e", "#3a2a1f", "#6a5546", "#a8927f", "#fff2d6"]
+        "canonical": "var(--stage-floor)",
+        "tonalRamp": ["#070b16", "#0b1220", "#0e1628", "#121c31", "#1b2a45", "#3a4a68", "#7d8aa5", "#eef2f8"]
       },
       "panel-unlit": {
         "role": "neutral",
         "displayName": "Panel Unlit",
-        "canonical": "#1a120d",
-        "tonalRamp": ["#070403", "#120d0a", "#1a120d", "#1d140e", "#3a2a1f", "#6a5546", "#a8927f", "#fff2d6"]
+        "canonical": "var(--panel-unlit)",
+        "tonalRamp": ["#070b16", "#0b1220", "#0e1628", "#121c31", "#1b2a45", "#3a4a68", "#7d8aa5", "#eef2f8"]
       },
       "cream": {
         "role": "neutral",
-        "displayName": "Cream",
-        "canonical": "#fff2d6",
-        "tonalRamp": ["#070403", "#120d0a", "#1a120d", "#1d140e", "#3a2a1f", "#6a5546", "#a8927f", "#fff2d6"]
+        "displayName": "Foreground (role name cream)",
+        "canonical": "var(--cream)",
+        "tonalRamp": ["#070b16", "#0b1220", "#0e1628", "#121c31", "#1b2a45", "#3a4a68", "#7d8aa5", "#eef2f8"]
       },
       "cream-dim": {
         "role": "neutral",
-        "displayName": "Cream Dim",
-        "canonical": "rgba(255, 242, 214, 0.64)",
-        "tonalRamp": ["#070403", "#120d0a", "#1a120d", "#1d140e", "#3a2a1f", "#6a5546", "#a8927f", "#fff2d6"]
+        "displayName": "Foreground Dim",
+        "canonical": "var(--cream-dim)",
+        "tonalRamp": ["#070b16", "#0b1220", "#0e1628", "#121c31", "#1b2a45", "#3a4a68", "#7d8aa5", "#eef2f8"]
       },
       "cream-faint": {
         "role": "neutral",
-        "displayName": "Cream Faint",
-        "canonical": "rgba(255, 242, 214, 0.36)",
-        "tonalRamp": ["#070403", "#120d0a", "#1a120d", "#1d140e", "#3a2a1f", "#6a5546", "#a8927f", "#fff2d6"]
+        "displayName": "Foreground Faint",
+        "canonical": "var(--cream-faint)",
+        "tonalRamp": ["#070b16", "#0b1220", "#0e1628", "#121c31", "#1b2a45", "#3a4a68", "#7d8aa5", "#eef2f8"]
       },
       "bib-yellow": { "role": "team", "displayName": "Bib Yellow", "canonical": "#f3c942" },
       "bib-green": { "role": "team", "displayName": "Bib Green", "canonical": "#48b97c" },
@@ -103,25 +111,89 @@
       "bib-orange": { "role": "team", "displayName": "Bib Orange", "canonical": "#f0883e" },
       "bib-pink": { "role": "team", "displayName": "Bib Pink", "canonical": "#e879a8" }
     },
+    "themes": {
+      "source": "src/lib/themes.ts",
+      "default": "midnatt",
+      "appliedBy": "themeStyle(board.content.theme) as inline custom properties on the root of /spill/[id], /spill/[id]/fjernkontroll, /brett/[id] and /brett/[id]/rediger; app chrome uses the :root defaults in src/app/globals.css (midnatt)",
+      "list": [
+        {
+          "id": "midnatt",
+          "label": "Midnatt og sølv",
+          "description": "Dyp marineblå, sølvplater, kjølig hvitt.",
+          "swatch": ["#0b1220", "#cfd7e6", "#16223a"],
+          "colorScheme": "dark",
+          "vars": { "stage": "#0b1220", "stage-deep": "#070b16", "stage-floor": "#121c31", "velvet": "#1a2742", "velvet-deep": "#111a2e", "brass": "#cfd7e6", "brass-light": "#eef2f8", "brass-dark": "#8b96ab", "brass-ink": "#101a2c", "cream": "#eef2f8", "cream-dim": "rgba(238,242,248,0.68)", "cream-faint": "rgba(238,242,248,0.34)", "lamp": "#f4f7fb", "lamp-glow": "rgba(160,180,220,0.22)", "glow-size": "0px", "panel-fg": "#f4f7fb", "panel-a": "#1b2a45", "panel-b": "#13203a", "panel-unlit": "#0e1628", "plate-a": "#eef2f8", "plate-b": "#cfd7e6", "plate-c": "#b3bfd3", "plate-shadow": "none", "spot": "rgba(120,150,210,0.16)", "wash": "rgba(20,40,80,0.35)" }
+        },
+        {
+          "id": "skifer",
+          "label": "Skifer og kobber",
+          "description": "Kullgrå, matt kobber, varm hvit.",
+          "swatch": ["#15181c", "#b87352", "#22262b"],
+          "colorScheme": "dark",
+          "vars": { "stage": "#15181c", "stage-deep": "#0e1012", "stage-floor": "#1e2227", "velvet": "#3a2a24", "velvet-deep": "#2a1e1a", "brass": "#b87352", "brass-light": "#d9a27f", "brass-dark": "#7d4a32", "brass-ink": "#1a120c", "cream": "#f2ede6", "cream-dim": "rgba(242,237,230,0.68)", "cream-faint": "rgba(242,237,230,0.32)", "lamp": "#f6efe6", "lamp-glow": "rgba(184,115,82,0.22)", "glow-size": "0px", "panel-fg": "#f6efe6", "panel-a": "#262a30", "panel-b": "#1c2025", "panel-unlit": "#191c20", "plate-a": "#c98b6a", "plate-b": "#b87352", "plate-c": "#9a5e40", "plate-shadow": "none", "spot": "rgba(184,115,82,0.10)", "wash": "rgba(0,0,0,0.4)" }
+        },
+        {
+          "id": "burgunder",
+          "label": "Burgunder og krem",
+          "description": "Vinrød bunn, lyse kremfliser med mørke tall.",
+          "swatch": ["#2a1218", "#f6eee4", "#e0c49a"],
+          "colorScheme": "dark",
+          "vars": { "stage": "#2a1218", "stage-deep": "#1c0b10", "stage-floor": "#36181f", "velvet": "#4a1e28", "velvet-deep": "#36141c", "brass": "#e0c49a", "brass-light": "#f3e9d8", "brass-dark": "#9c7a4a", "brass-ink": "#3a1a22", "cream": "#f6eee4", "cream-dim": "rgba(246,238,228,0.68)", "cream-faint": "rgba(246,238,228,0.32)", "lamp": "#3a1a22", "lamp-glow": "rgba(0,0,0,0.25)", "glow-size": "0px", "panel-fg": "#3a1a22", "panel-a": "#fbf5ea", "panel-b": "#efe3d2", "panel-unlit": "#3a1c24", "plate-a": "#f8f0e2", "plate-b": "#f3e9d8", "plate-c": "#e0c49a", "plate-shadow": "none", "spot": "rgba(224,196,154,0.10)", "wash": "rgba(0,0,0,0.35)" }
+        },
+        {
+          "id": "skog",
+          "label": "Skog og dempet messing",
+          "description": "Dyp grønn, tynn messinglinje, krem.",
+          "swatch": ["#0f1f1a", "#cdb37a", "#2a3f36"],
+          "colorScheme": "dark",
+          "vars": { "stage": "#0f1f1a", "stage-deep": "#0a1512", "stage-floor": "#163027", "velvet": "#24362e", "velvet-deep": "#1a2822", "brass": "#cdb37a", "brass-light": "#e2cd9a", "brass-dark": "#8a7548", "brass-ink": "#eef3ee", "cream": "#eef3ee", "cream-dim": "rgba(238,243,238,0.68)", "cream-faint": "rgba(238,243,238,0.32)", "lamp": "#f3f0e6", "lamp-glow": "rgba(205,179,122,0.2)", "glow-size": "0px", "panel-fg": "#f3f0e6", "panel-a": "#1c382e", "panel-b": "#142a22", "panel-unlit": "#12241e", "plate-a": "#33493f", "plate-b": "#2a3f36", "plate-c": "#21332b", "plate-shadow": "none", "spot": "rgba(205,179,122,0.10)", "wash": "rgba(0,0,0,0.35)" }
+        },
+        {
+          "id": "lys",
+          "label": "Lys scene",
+          "description": "Lys papirbunn, mørke tall, én mørk plate.",
+          "swatch": ["#f4efe6", "#1d1a16", "#ffffff"],
+          "colorScheme": "light",
+          "vars": { "stage": "#f4efe6", "stage-deep": "#ebe4d8", "stage-floor": "#ffffff", "velvet": "#d9c9a8", "velvet-deep": "#c9b58e", "brass": "#7a5a1e", "brass-light": "#a07a2e", "brass-dark": "#4d3810", "brass-ink": "#f4efe6", "cream": "#1d1a16", "cream-dim": "rgba(29,26,22,0.68)", "cream-faint": "rgba(29,26,22,0.34)", "lamp": "#1d1a16", "lamp-glow": "rgba(0,0,0,0.08)", "glow-size": "0px", "panel-fg": "#1d1a16", "panel-a": "#ffffff", "panel-b": "#f7f2ea", "panel-unlit": "#e6dfd2", "plate-a": "#2a2622", "plate-b": "#1d1a16", "plate-c": "#14120f", "plate-shadow": "none", "spot": "rgba(255,255,255,0.6)", "wash": "rgba(122,90,30,0.08)" }
+        },
+        {
+          "id": "monokrom",
+          "label": "Monokrom",
+          "description": "Nesten svart, grå plater, hvite tall.",
+          "swatch": ["#0d0d0f", "#b8b8b0", "#1e1e22"],
+          "colorScheme": "dark",
+          "vars": { "stage": "#0d0d0f", "stage-deep": "#070708", "stage-floor": "#16161a", "velvet": "#26262b", "velvet-deep": "#1c1c20", "brass": "#b8b8b0", "brass-light": "#e6e6e0", "brass-dark": "#6f6f68", "brass-ink": "#f5f5f2", "cream": "#f5f5f2", "cream-dim": "rgba(245,245,242,0.68)", "cream-faint": "rgba(245,245,242,0.3)", "lamp": "#f5f5f2", "lamp-glow": "rgba(255,255,255,0.08)", "glow-size": "0px", "panel-fg": "#f5f5f2", "panel-a": "#1a1a1e", "panel-b": "#131316", "panel-unlit": "#101012", "plate-a": "#26262b", "plate-b": "#1e1e22", "plate-c": "#16161a", "plate-shadow": "none", "spot": "rgba(255,255,255,0.05)", "wash": "rgba(0,0,0,0.4)" }
+        },
+        {
+          "id": "studio",
+          "label": "Studio",
+          "description": "Mørk scene, messing og glødende paneler.",
+          "swatch": ["#120d0a", "#d4a648", "#3a2612"],
+          "colorScheme": "dark",
+          "vars": { "stage": "#120d0a", "stage-deep": "#070403", "stage-floor": "#1d140e", "velvet": "#8b1e2d", "velvet-deep": "#56111c", "brass": "#d4a648", "brass-light": "#f3dc93", "brass-dark": "#7d5a1c", "brass-ink": "#2a1c08", "cream": "#fff2d6", "cream-dim": "rgba(255,242,214,0.64)", "cream-faint": "rgba(255,242,214,0.36)", "lamp": "#ffe2a3", "lamp-glow": "rgba(255,196,105,0.45)", "glow-size": "28px", "panel-fg": "#fff2d6", "panel-a": "#3a2612", "panel-b": "#22160c", "panel-unlit": "#1a120d", "plate-a": "#f6e2a4", "plate-b": "#d4a648", "plate-c": "#b98a30", "plate-shadow": "0 1px 0 rgba(255,245,215,0.55)", "spot": "rgba(255,226,163,0.22)", "wash": "rgba(139,30,45,0.35)" }
+        }
+      ]
+    },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Landing hero headline only; italic brass-light for the emphasised phrase." },
+      "display": { "displayName": "Display", "purpose": "Landing hero headline only; the emphasised phrase in accent light. Young Serif ships one weight, so weight utilities are inert or browser-synthesised." },
       "headline": { "displayName": "Headline", "purpose": "Page titles on tool pages; the board title on the big screen uses clamp(1.6rem, 3.4vw, 3.6rem)." },
-      "title": { "displayName": "Title", "purpose": "Section headings, the site wordmark, board names in lists." },
-      "nameplate": { "displayName": "Nameplate", "purpose": "Engraved Bodoni text on brass plates: categories, room code label, leader plaque." },
+      "title": { "displayName": "Title", "purpose": "Section headings (Brettet, Fargetema), the site wordmark, board names in lists." },
+      "nameplate": { "displayName": "Nameplate", "purpose": "Young Serif on plates in plate ink: categories, leader plaque, selected theme card. Big screen clamp(0.95rem, 1.7vw, 1.9rem), phone 11px." },
       "numeral": { "displayName": "Numeral", "purpose": "Points and scores in tabular lining Jost 600; sizes scale with clamp() per surface." },
+      "question": { "displayName": "Question", "purpose": "The question on the big screen in Jost 600, stepping down by length from a 7.2rem ceiling; the answer uses the same ladder in Young Serif accent light." },
       "body": { "displayName": "Body", "purpose": "Controls, inputs, descriptions and hints; lead paragraphs at 1.25rem capped at 46ch." },
-      "label": { "displayName": "Label", "purpose": "Uppercase brass field labels and cream-dim status labels with 0.18em tracking." }
+      "label": { "displayName": "Label", "purpose": "Uppercase accent field labels and foreground-dim status labels with 0.18em tracking." }
     },
     "shadows": [
-      { "name": "brass-plate", "value": "inset 0 1px 0 rgba(255, 248, 220, 0.85), inset 0 -2px 0 rgba(60, 40, 8, 0.55), 0 6px 18px -6px rgba(0, 0, 0, 0.7)", "purpose": "Every brass surface; bevel highlight, bottom edge and a tucked drop." },
-      { "name": "brass-rim", "value": "inset 0 1px 0 rgba(243, 220, 147, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.5)", "purpose": "Dark cards, outline buttons, inputs and plaques, paired with a 1px 55% brass border." },
-      { "name": "panel-lit", "value": "inset 0 1px 0 rgba(255, 226, 163, 0.35), inset 0 0 0 1px rgba(212, 166, 72, 0.4), 0 0 28px -4px rgba(255, 196, 105, 0.45), 0 10px 24px -14px rgba(0, 0, 0, 0.9)", "purpose": "Unused points panels: acrylic frame plus amber glow." },
-      { "name": "panel-unlit", "value": "inset 0 0 0 1px rgba(212, 166, 72, 0.14)", "purpose": "Used points panels; no glow, no text shadow." },
-      { "name": "numeral-halo", "value": "text-shadow: 0 0 18px rgba(255, 226, 163, 0.6)", "purpose": "Cream numerals on lit panels; the overlay points readout uses 24px at 0.55." },
-      { "name": "bib-dot", "value": "0 0 {size}px {bib}66", "purpose": "Coloured halo around a team dot." },
+      { "name": "plate", "value": "inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.28), 0 6px 18px -6px rgba(0, 0, 0, 0.5); text-shadow: var(--plate-shadow)", "purpose": "Every plate surface in every theme; the text-shadow is none outside Studio." },
+      { "name": "rim", "value": "inset 0 1px 0 color-mix(in srgb, var(--brass-light) 22%, transparent), inset 0 -1px 0 rgba(0, 0, 0, 0.35)", "purpose": "Dark cards, outline buttons, inputs, plaques, tab list and theme cards, paired with a 1px border at 50% accent." },
+      { "name": "panel-lit", "value": "inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 0 0 1px color-mix(in srgb, var(--brass) 38%, transparent), 0 0 var(--glow-size) -4px var(--lamp-glow), 0 10px 24px -14px rgba(0, 0, 0, 0.6); text-shadow: 0 0 var(--glow-size) var(--lamp-glow)", "purpose": "Unused points panels; the glow terms collapse to nothing when --glow-size is 0px." },
+      { "name": "panel-unlit", "value": "inset 0 0 0 1px color-mix(in srgb, var(--brass) 14%, transparent)", "purpose": "Used points panels; no glow, no text shadow." },
+      { "name": "bib-dot", "value": "0 0 {size}px {bib}66", "purpose": "Coloured halo around a team dot, theme-independent." },
       { "name": "team-underline", "value": "inset 0 -3px 0 {bib}", "purpose": "Team colour stripe along the bottom of a non-leading podium plaque." },
       { "name": "photo", "value": "filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6))", "purpose": "Clue images on the big screen." },
-      { "name": "flash", "value": "0 0 40px 6px rgba(255, 226, 163, 0.55) at 30% of a 900ms keyframe", "purpose": "A podium plaque whose score just changed." }
+      { "name": "overlay-points-halo", "value": "text-shadow: 0 0 24px rgba(255, 226, 163, 0.55)", "purpose": "The points readout in the clue overlay. Hardcoded amber left over from the studio build; should move onto --lamp-glow." },
+      { "name": "flash", "value": "0 0 40px 6px rgba(255, 226, 163, 0.55) at 30% of a 900ms keyframe", "purpose": "A podium plaque whose score just changed. Hardcoded amber left over from the studio build." }
     ],
     "motion": [
       { "name": "ease-stage", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The only easing curve; used by every transition and keyframe animation." },
@@ -132,6 +204,7 @@
       { "name": "score-roll", "value": "700ms, cubic ease-out via requestAnimationFrame", "purpose": "Scoreboard numerals counting to the new value." },
       { "name": "flash", "value": "900ms ease-out", "purpose": "Plaque glow after a score change." },
       { "name": "develop", "value": "1100ms, blur 14px to 0, brightness 0.3 to 1, saturate 0.4 to 1, scale 1.03 to 1", "purpose": "Answer photographs developing in." },
+      { "name": "long-press", "value": "550ms, then a 20ms vibration where supported", "purpose": "Marking a clue used from the phone mini board." },
       { "name": "reduced-motion", "value": "all keyframe animations none, transitions 0.01ms, score roll 1 frame", "purpose": "prefers-reduced-motion: reduce." }
     ],
     "breakpoints": [
@@ -140,10 +213,10 @@
       { "name": "lg", "value": "1024px" }
     ],
     "backgrounds": [
-      { "name": "stage-spotlight", "value": "background-color: var(--stage); background-image: radial-gradient(ellipse 70% 55% at 50% 8%, rgba(255, 226, 163, 0.22), rgba(255, 226, 163, 0) 70%), radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139, 30, 45, 0.35), rgba(139, 30, 45, 0) 70%), linear-gradient(180deg, var(--stage) 0%, var(--stage-deep) 100%)", "purpose": "Every page and overlay ground: lamp pool at the top, velvet bleed at the bottom." },
-      { "name": "brass-plate", "value": "linear-gradient(168deg, #f6e2a4 0%, #d9ad4f 22%, #b5842c 48%, #d4a648 62%, #f0d489 82%, #b98a30 100%)", "purpose": "The bevelled brass material." },
-      { "name": "panel-lit", "value": "radial-gradient(ellipse 80% 90% at 50% 100%, rgba(255, 196, 105, 0.34), rgba(255, 196, 105, 0) 70%), linear-gradient(180deg, #3a2612 0%, #22160c 100%)", "purpose": "Lit acrylic panel face." },
-      { "name": "velvet", "value": "background-color: var(--velvet); background-image: repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 2px, transparent 2px 9px), linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.3))", "purpose": "Velvet fabric with a faint pinstripe, used on the confirm-reset button." }
+      { "name": "stage-spotlight", "value": "background-color: var(--stage); color: var(--cream); background-image: radial-gradient(ellipse 70% 55% at 50% 8%, var(--spot), transparent 70%), radial-gradient(ellipse 120% 60% at 50% 100%, var(--wash), transparent 70%), linear-gradient(180deg, var(--stage) 0%, var(--stage-deep) 100%)", "purpose": "Every page and overlay ground: spot pool at the top, wash at the bottom, both theme variables." },
+      { "name": "brass-plate", "value": "linear-gradient(168deg, var(--plate-a) 0%, var(--plate-b) 55%, var(--plate-c) 100%)", "purpose": "The plate material; three stops from the theme." },
+      { "name": "panel-lit", "value": "radial-gradient(ellipse 80% 90% at 50% 100%, var(--lamp-glow), transparent 70%), linear-gradient(180deg, var(--panel-a) 0%, var(--panel-b) 100%)", "purpose": "Lit panel face." },
+      { "name": "velvet", "value": "background-color: var(--velvet); background-image: repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 2px, transparent 2px 9px), linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.3))", "purpose": "Velvet fabric with a faint pinstripe, used on the confirm-reset button only." }
     ]
   },
   "components": [
@@ -151,97 +224,97 @@
       "name": "Brass Button",
       "kind": "button",
       "refersTo": "button-brass",
-      "description": "The single primary action on a view, painted as a brass plate.",
+      "description": "The single primary action on a view, painted as a plate in the current theme.",
       "html": "<button class=\"ds-btn-brass\">Lag et brett</button>",
-      "css": ".ds-btn-brass { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 0; border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; font-weight: 600; letter-spacing: 0.025em; line-height: 1; color: var(--brass-ink, #2a1c08); background-image: linear-gradient(168deg, #f6e2a4 0%, #d9ad4f 22%, #b5842c 48%, #d4a648 62%, #f0d489 82%, #b98a30 100%); box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.85), inset 0 -2px 0 rgba(60, 40, 8, 0.55), 0 6px 18px -6px rgba(0, 0, 0, 0.7); text-shadow: 0 1px 0 rgba(255, 245, 215, 0.55); cursor: pointer; user-select: none; transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), filter 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-brass:hover { filter: brightness(1.1); } .ds-btn-brass:active { transform: translateY(1px); } .ds-btn-brass:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; } .ds-btn-brass:disabled { opacity: 0.5; filter: none; cursor: default; }"
+      "css": ".ds-btn-brass { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 0; border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; font-weight: 600; letter-spacing: 0.025em; line-height: 1; color: var(--brass-ink, #101a2c); background-image: linear-gradient(168deg, var(--plate-a, #eef2f8) 0%, var(--plate-b, #cfd7e6) 55%, var(--plate-c, #b3bfd3) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.28), 0 6px 18px -6px rgba(0, 0, 0, 0.5); text-shadow: var(--plate-shadow, none); cursor: pointer; user-select: none; transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), filter 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-brass:hover { filter: brightness(1.1); } .ds-btn-brass:active { transform: translateY(1px); } .ds-btn-brass:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; } .ds-btn-brass:disabled { opacity: 0.5; filter: none; cursor: default; }"
     },
     {
       "name": "Outline Button",
       "kind": "button",
       "refersTo": "button-outline",
-      "description": "Secondary action: brass rim over a translucent stage floor.",
+      "description": "Secondary action: accent rim over a translucent stage floor.",
       "html": "<button class=\"ds-btn-outline\">Koble til med romkode</button>",
-      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 1px solid rgba(212, 166, 72, 0.55); border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; letter-spacing: 0.025em; line-height: 1; color: var(--cream, #fff2d6); background: rgba(29, 20, 14, 0.6); box-shadow: inset 0 1px 0 rgba(243, 220, 147, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.5); cursor: pointer; user-select: none; transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-outline:hover { background: var(--stage-floor, #1d140e); } .ds-btn-outline:active { transform: translateY(1px); } .ds-btn-outline:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; } .ds-btn-outline:disabled { opacity: 0.4; cursor: default; }"
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 1px solid color-mix(in srgb, var(--brass, #cfd7e6) 50%, transparent); border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; letter-spacing: 0.025em; line-height: 1; color: var(--cream, #eef2f8); background: color-mix(in srgb, var(--stage-floor, #121c31) 60%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--brass-light, #eef2f8) 22%, transparent), inset 0 -1px 0 rgba(0, 0, 0, 0.35); cursor: pointer; user-select: none; transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-outline:hover { background: var(--stage-floor, #121c31); } .ds-btn-outline:active { transform: translateY(1px); } .ds-btn-outline:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; } .ds-btn-outline:disabled { opacity: 0.4; cursor: default; }"
     },
     {
       "name": "Ghost Button",
       "kind": "button",
       "refersTo": "button-ghost",
-      "description": "Tertiary and escape actions: dim cream text that wakes on hover.",
+      "description": "Tertiary and escape actions: dim foreground text that wakes on hover.",
       "html": "<button class=\"ds-btn-ghost\">Angre</button>",
-      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 0; border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; letter-spacing: 0.025em; line-height: 1; color: rgba(255, 242, 214, 0.64); background: transparent; cursor: pointer; user-select: none; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost:hover { color: var(--cream, #fff2d6); background: rgba(255, 255, 255, 0.05); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; } .ds-btn-ghost:disabled { opacity: 0.4; cursor: default; }"
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 0; border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; letter-spacing: 0.025em; line-height: 1; color: var(--cream-dim, rgba(238, 242, 248, 0.68)); background: transparent; cursor: pointer; user-select: none; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost:hover { color: var(--cream, #eef2f8); background: rgba(255, 255, 255, 0.05); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; } .ds-btn-ghost:disabled { opacity: 0.4; cursor: default; }"
     },
     {
       "name": "Velvet Button",
       "kind": "button",
       "refersTo": "button-velvet",
-      "description": "Destructive confirmation only; velvet fabric with cream text.",
+      "description": "Destructive confirmation only; velvet fabric in the theme's secondary field.",
       "html": "<button class=\"ds-btn-velvet\">Ja, nullstill</button>",
-      "css": ".ds-btn-velvet { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 0; border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; font-weight: 600; letter-spacing: 0.025em; line-height: 1; color: var(--cream, #fff2d6); background-color: var(--velvet, #8b1e2d); background-image: repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 2px, transparent 2px 9px), linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.3)); cursor: pointer; user-select: none; transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), filter 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-velvet:hover { filter: brightness(1.1); } .ds-btn-velvet:active { transform: translateY(1px); } .ds-btn-velvet:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; }"
+      "css": ".ds-btn-velvet { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 0; border-radius: 6px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 17px; font-weight: 600; letter-spacing: 0.025em; line-height: 1; color: var(--cream, #eef2f8); background-color: var(--velvet, #1a2742); background-image: repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 2px, transparent 2px 9px), linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.3)); cursor: pointer; user-select: none; transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), filter 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-velvet:hover { filter: brightness(1.1); } .ds-btn-velvet:active { transform: translateY(1px); } .ds-btn-velvet:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     },
     {
       "name": "Field",
       "kind": "input",
       "refersTo": "input",
-      "description": "Uppercase brass label over a brass-rimmed input on deep stage.",
+      "description": "Uppercase accent label over a rimmed input on deep stage.",
       "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Tittel</span><input class=\"ds-input\" placeholder=\"F.eks. Kanwals bursdagsquiz\" /><span class=\"ds-field-hint\">Valgfri. Vises under tittelen på storskjermen.</span></label>",
-      "css": ".ds-field { display: flex; flex-direction: column; gap: 8px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); } .ds-field-label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--brass, #d4a648); } .ds-field-hint { font-size: 0.875rem; color: rgba(255, 242, 214, 0.64); } .ds-input { width: 100%; padding: 12px 16px; border: 1px solid rgba(212, 166, 72, 0.55); border-radius: 6px; font: inherit; font-size: 17px; color: var(--cream, #fff2d6); background: rgba(7, 4, 3, 0.7); box-shadow: inset 0 1px 0 rgba(243, 220, 147, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.5); caret-color: var(--brass-light, #f3dc93); } .ds-input::placeholder { color: rgba(255, 242, 214, 0.36); } .ds-input:focus { background: var(--stage-deep, #070403); } .ds-input:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; }"
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 8px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); } .ds-field-label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--brass, #cfd7e6); } .ds-field-hint { font-size: 0.875rem; color: var(--cream-dim, rgba(238, 242, 248, 0.68)); } .ds-input { width: 100%; padding: 12px 16px; border: 1px solid color-mix(in srgb, var(--brass, #cfd7e6) 50%, transparent); border-radius: 6px; font: inherit; font-size: 17px; color: var(--cream, #eef2f8); background: color-mix(in srgb, var(--stage-deep, #070b16) 70%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--brass-light, #eef2f8) 22%, transparent), inset 0 -1px 0 rgba(0, 0, 0, 0.35); caret-color: var(--brass-light, #eef2f8); } .ds-input::placeholder { color: var(--cream-faint, rgba(238, 242, 248, 0.34)); } .ds-input:focus { background: var(--stage-deep, #070b16); } .ds-input:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     },
     {
-      "name": "Brass Nameplate",
+      "name": "Nameplate",
       "kind": "chip",
       "refersTo": "plate",
-      "description": "Category header and any engraved brass label.",
+      "description": "Category header and any plate label, in Young Serif plate ink.",
       "html": "<div class=\"ds-plate\">Kategori</div>",
-      "css": ".ds-plate { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 4px; font-family: var(--font-display, 'Bodoni Moda', 'Bodoni MT', 'Didot', Georgia, serif); font-size: 1.125rem; font-weight: 600; letter-spacing: 0.025em; line-height: 1.05; text-align: center; color: var(--brass-ink, #2a1c08); background-image: linear-gradient(168deg, #f6e2a4 0%, #d9ad4f 22%, #b5842c 48%, #d4a648 62%, #f0d489 82%, #b98a30 100%); box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.85), inset 0 -2px 0 rgba(60, 40, 8, 0.55), 0 6px 18px -6px rgba(0, 0, 0, 0.7); text-shadow: 0 1px 0 rgba(255, 245, 215, 0.55); }"
+      "css": ".ds-plate { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 4px; font-family: var(--font-display, 'Young Serif', 'Iowan Old Style', Palatino, Georgia, serif); font-size: 1.125rem; font-weight: 400; letter-spacing: 0.025em; line-height: 1.05; text-align: center; color: var(--brass-ink, #101a2c); background-image: linear-gradient(168deg, var(--plate-a, #eef2f8) 0%, var(--plate-b, #cfd7e6) 55%, var(--plate-c, #b3bfd3) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.28), 0 6px 18px -6px rgba(0, 0, 0, 0.5); text-shadow: var(--plate-shadow, none); }"
     },
     {
       "name": "Lit Panel",
       "kind": "custom",
       "refersTo": "panel-lit",
-      "description": "An unused points panel: amber acrylic lit from below with a haloed cream numeral.",
+      "description": "An unused points panel: theme panel face with a framed numeral; glows only when --glow-size is above zero.",
       "html": "<button class=\"ds-panel ds-panel-lit\">400</button>",
-      "css": ".ds-panel { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 12px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 1.875rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; line-height: 1; cursor: pointer; transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms cubic-bezier(0.16, 1, 0.3, 1), filter 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-panel-lit { color: var(--cream, #fff2d6); background-image: radial-gradient(ellipse 80% 90% at 50% 100%, rgba(255, 196, 105, 0.34), rgba(255, 196, 105, 0) 70%), linear-gradient(180deg, #3a2612 0%, #22160c 100%); box-shadow: inset 0 1px 0 rgba(255, 226, 163, 0.35), inset 0 0 0 1px rgba(212, 166, 72, 0.4), 0 0 28px -4px rgba(255, 196, 105, 0.45), 0 10px 24px -14px rgba(0, 0, 0, 0.9); text-shadow: 0 0 18px rgba(255, 226, 163, 0.6); } .ds-panel-lit:hover { transform: translateY(-2px); filter: brightness(1.1); } .ds-panel:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; }"
+      "css": ".ds-panel { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 12px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 1.875rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; line-height: 1; cursor: pointer; transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms cubic-bezier(0.16, 1, 0.3, 1), filter 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-panel-lit { color: var(--panel-fg, #f4f7fb); background-image: radial-gradient(ellipse 80% 90% at 50% 100%, var(--lamp-glow, rgba(160, 180, 220, 0.22)), transparent 70%), linear-gradient(180deg, var(--panel-a, #1b2a45) 0%, var(--panel-b, #13203a) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 0 0 1px color-mix(in srgb, var(--brass, #cfd7e6) 38%, transparent), 0 0 var(--glow-size, 0px) -4px var(--lamp-glow, rgba(160, 180, 220, 0.22)), 0 10px 24px -14px rgba(0, 0, 0, 0.6); text-shadow: 0 0 var(--glow-size, 0px) var(--lamp-glow, rgba(160, 180, 220, 0.22)); } .ds-panel-lit:hover { transform: translateY(-2px); filter: brightness(1.1); } .ds-panel:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     },
     {
       "name": "Unlit Panel",
       "kind": "custom",
       "refersTo": "panel-unlit",
-      "description": "A used points panel: dark acrylic, faint numeral, no glow.",
+      "description": "A used points panel: flat unlit face, faint numeral, no glow.",
       "html": "<button class=\"ds-panel ds-panel-unlit\">400</button>",
-      "css": ".ds-panel { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 12px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 1.875rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; line-height: 1; cursor: pointer; transition: color 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-panel-unlit { color: rgba(255, 242, 214, 0.36); background: var(--panel-unlit, #1a120d); box-shadow: inset 0 0 0 1px rgba(212, 166, 72, 0.14); text-shadow: none; } .ds-panel-unlit:hover { color: rgba(255, 242, 214, 0.64); } .ds-panel:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; }"
+      "css": ".ds-panel { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 12px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 1.875rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; line-height: 1; cursor: pointer; transition: color 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-panel-unlit { color: var(--cream-faint, rgba(238, 242, 248, 0.34)); background: var(--panel-unlit, #0e1628); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brass, #cfd7e6) 14%, transparent); text-shadow: none; } .ds-panel-unlit:hover { color: var(--cream-dim, rgba(238, 242, 248, 0.68)); } .ds-panel:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     },
     {
       "name": "Podium Plaque",
       "kind": "card",
       "refersTo": "podium-plaque",
-      "description": "A team's scoreboard plaque with bib dot, Bodoni name, tabular score and team-colour underline; the leader turns to brass.",
+      "description": "A team's scoreboard plaque with bib dot, Young Serif name, tabular score and team-colour underline; the sole leader becomes a plate.",
       "html": "<ol class=\"ds-podium\"><li class=\"ds-plaque ds-plaque-leader\"><div class=\"ds-plaque-head\"><span class=\"ds-bib\" style=\"--bib:#f3c942\"></span><span class=\"ds-plaque-name\">Lag 1</span></div><span class=\"ds-plaque-score\">400</span></li><li class=\"ds-plaque\" style=\"--bib:#48b97c\"><div class=\"ds-plaque-head\"><span class=\"ds-bib\"></span><span class=\"ds-plaque-name\">Lag 2</span></div><span class=\"ds-plaque-score\">0</span></li></ol>",
-      "css": ".ds-podium { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; } .ds-plaque { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; min-width: 0; overflow: hidden; padding: 12px 16px; border: 1px solid rgba(212, 166, 72, 0.55); border-radius: 6px; color: var(--cream, #fff2d6); background: rgba(29, 20, 14, 0.7); box-shadow: inset 0 1px 0 rgba(243, 220, 147, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.5), inset 0 -3px 0 var(--bib, #48b97c); } .ds-plaque-leader { border-color: transparent; color: var(--brass-ink, #2a1c08); background-image: linear-gradient(168deg, #f6e2a4 0%, #d9ad4f 22%, #b5842c 48%, #d4a648 62%, #f0d489 82%, #b98a30 100%); box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.85), inset 0 -2px 0 rgba(60, 40, 8, 0.55), 0 6px 18px -6px rgba(0, 0, 0, 0.7); text-shadow: 0 1px 0 rgba(255, 245, 215, 0.55); } .ds-plaque-head { display: flex; align-items: center; gap: 8px; min-width: 0; } .ds-bib { display: inline-block; flex-shrink: 0; width: 16px; height: 16px; border-radius: 999px; background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.75), var(--bib, #48b97c) 55%, rgba(0, 0, 0, 0.35)); box-shadow: 0 0 16px color-mix(in srgb, var(--bib, #48b97c) 40%, transparent); } .ds-plaque-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: var(--font-display, 'Bodoni Moda', 'Bodoni MT', 'Didot', Georgia, serif); font-size: 1.25rem; font-weight: 500; letter-spacing: 0.025em; } .ds-plaque-score { font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 2.5rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; line-height: 1; }"
+      "css": ".ds-podium { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; } .ds-plaque { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; min-width: 0; overflow: hidden; padding: 12px 16px; border: 1px solid color-mix(in srgb, var(--brass, #cfd7e6) 50%, transparent); border-radius: 6px; color: var(--cream, #eef2f8); background: color-mix(in srgb, var(--stage-floor, #121c31) 70%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--brass-light, #eef2f8) 22%, transparent), inset 0 -1px 0 rgba(0, 0, 0, 0.35), inset 0 -3px 0 var(--bib, #48b97c); } .ds-plaque-leader { border-color: transparent; color: var(--brass-ink, #101a2c); background-image: linear-gradient(168deg, var(--plate-a, #eef2f8) 0%, var(--plate-b, #cfd7e6) 55%, var(--plate-c, #b3bfd3) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.28), 0 6px 18px -6px rgba(0, 0, 0, 0.5); text-shadow: var(--plate-shadow, none); } .ds-plaque-head { display: flex; align-items: center; gap: 8px; min-width: 0; } .ds-bib { display: inline-block; flex-shrink: 0; width: 16px; height: 16px; border-radius: 999px; background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.75), var(--bib, #48b97c) 55%, rgba(0, 0, 0, 0.35)); box-shadow: 0 0 16px color-mix(in srgb, var(--bib, #48b97c) 40%, transparent); } .ds-plaque-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: var(--font-display, 'Young Serif', 'Iowan Old Style', Palatino, Georgia, serif); font-size: 1.25rem; font-weight: 400; letter-spacing: 0.025em; } .ds-plaque-score { font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 2.5rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; line-height: 1; }"
+    },
+    {
+      "name": "Theme Card",
+      "kind": "chip",
+      "refersTo": "theme-card",
+      "description": "One radio card in the editor's Fargetema picker: a three-stripe swatch over the theme label; the selected card becomes a plate.",
+      "html": "<div class=\"ds-themes\" role=\"radiogroup\"><button class=\"ds-theme ds-theme-selected\" role=\"radio\" aria-checked=\"true\"><span class=\"ds-theme-swatch\"><span style=\"background:#0b1220\"></span><span style=\"background:#cfd7e6\"></span><span style=\"background:#16223a\"></span></span><span class=\"ds-theme-label\">Midnatt og sølv</span></button><button class=\"ds-theme\" role=\"radio\" aria-checked=\"false\"><span class=\"ds-theme-swatch\"><span style=\"background:#120d0a\"></span><span style=\"background:#d4a648\"></span><span style=\"background:#3a2612\"></span></span><span class=\"ds-theme-label\">Studio</span></button></div>",
+      "css": ".ds-themes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); } .ds-theme { display: flex; flex-direction: column; gap: 8px; min-height: 48px; padding: 8px; border: 1px solid color-mix(in srgb, var(--brass, #cfd7e6) 50%, transparent); border-radius: 6px; text-align: left; color: var(--cream, #eef2f8); background: color-mix(in srgb, var(--stage-floor, #121c31) 60%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--brass-light, #eef2f8) 22%, transparent), inset 0 -1px 0 rgba(0, 0, 0, 0.35); cursor: pointer; user-select: none; transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-theme:hover { background: var(--stage-floor, #121c31); } .ds-theme-selected, .ds-theme-selected:hover { border-color: transparent; color: var(--brass-ink, #101a2c); background-image: linear-gradient(168deg, var(--plate-a, #eef2f8) 0%, var(--plate-b, #cfd7e6) 55%, var(--plate-c, #b3bfd3) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.28), 0 6px 18px -6px rgba(0, 0, 0, 0.5); text-shadow: var(--plate-shadow, none); } .ds-theme-swatch { display: flex; height: 36px; overflow: hidden; border-radius: 4px; } .ds-theme-swatch > span { flex: 1; } .ds-theme-label { font-size: 15px; line-height: 1.25; } .ds-theme:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     },
     {
       "name": "Connect Phone Button",
       "kind": "nav",
       "refersTo": "plate",
-      "description": "The big-screen header's brass button with an inline phone outline that opens the QR overlay.",
+      "description": "The big-screen header's plate button with an inline phone outline that opens the QR overlay.",
       "html": "<button class=\"ds-connect\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><rect x=\"4.5\" y=\"1.5\" width=\"7\" height=\"13\" rx=\"1.5\"/><path d=\"M7 12.5h2\"/></svg>Koble til mobil</button>",
-      "css": ".ds-connect { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; line-height: 1; color: var(--brass-ink, #2a1c08); background-image: linear-gradient(168deg, #f6e2a4 0%, #d9ad4f 22%, #b5842c 48%, #d4a648 62%, #f0d489 82%, #b98a30 100%); box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.85), inset 0 -2px 0 rgba(60, 40, 8, 0.55), 0 6px 18px -6px rgba(0, 0, 0, 0.7); text-shadow: 0 1px 0 rgba(255, 245, 215, 0.55); cursor: pointer; transition: filter 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-connect:hover { filter: brightness(1.1); } .ds-connect:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; }"
-    },
-    {
-      "name": "Room Code Plate",
-      "kind": "chip",
-      "refersTo": "plate",
-      "description": "The phone remote's brass plate carrying the spaced room code.",
-      "html": "<span class=\"ds-roomcode\">REVW</span>",
-      "css": ".ds-roomcode { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 1.125rem; font-weight: 700; font-variant-numeric: tabular-nums lining-nums; letter-spacing: 0.15em; line-height: 1; color: var(--brass-ink, #2a1c08); background-image: linear-gradient(168deg, #f6e2a4 0%, #d9ad4f 22%, #b5842c 48%, #d4a648 62%, #f0d489 82%, #b98a30 100%); box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.85), inset 0 -2px 0 rgba(60, 40, 8, 0.55), 0 6px 18px -6px rgba(0, 0, 0, 0.7); text-shadow: 0 1px 0 rgba(255, 245, 215, 0.55); }"
+      "css": ".ds-connect { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; line-height: 1; color: var(--brass-ink, #101a2c); background-image: linear-gradient(168deg, var(--plate-a, #eef2f8) 0%, var(--plate-b, #cfd7e6) 55%, var(--plate-c, #b3bfd3) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.28), 0 6px 18px -6px rgba(0, 0, 0, 0.5); text-shadow: var(--plate-shadow, none); cursor: pointer; transition: filter 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-connect:hover { filter: brightness(1.1); } .ds-connect:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     },
     {
       "name": "Remote Tabs",
       "kind": "nav",
       "refersTo": "button-brass",
-      "description": "The phone remote's two-cell segmented control; the active tab is a brass plate.",
+      "description": "The phone remote's two-cell segmented control; the active tab is a plate.",
       "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab ds-tab-active\" role=\"tab\" aria-selected=\"true\">Spill</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Lag (2)</button></div>",
-      "css": ".ds-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border: 1px solid rgba(212, 166, 72, 0.55); border-radius: 6px; background: rgba(7, 4, 3, 0.7); box-shadow: inset 0 1px 0 rgba(243, 220, 147, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.5); } .ds-tab { min-height: 48px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255, 242, 214, 0.64); background: transparent; cursor: pointer; user-select: none; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-tab:hover { color: var(--cream, #fff2d6); } .ds-tab-active, .ds-tab-active:hover { color: var(--brass-ink, #2a1c08); background-image: linear-gradient(168deg, #f6e2a4 0%, #d9ad4f 22%, #b5842c 48%, #d4a648 62%, #f0d489 82%, #b98a30 100%); box-shadow: inset 0 1px 0 rgba(255, 248, 220, 0.85), inset 0 -2px 0 rgba(60, 40, 8, 0.55), 0 6px 18px -6px rgba(0, 0, 0, 0.7); text-shadow: 0 1px 0 rgba(255, 245, 215, 0.55); } .ds-tab:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; }"
+      "css": ".ds-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border: 1px solid color-mix(in srgb, var(--brass, #cfd7e6) 50%, transparent); border-radius: 6px; background: color-mix(in srgb, var(--stage-deep, #070b16) 70%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--brass-light, #eef2f8) 22%, transparent), inset 0 -1px 0 rgba(0, 0, 0, 0.35); } .ds-tab { min-height: 48px; border: 0; border-radius: 4px; font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--cream-dim, rgba(238, 242, 248, 0.68)); background: transparent; cursor: pointer; user-select: none; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-tab:hover { color: var(--cream, #eef2f8); } .ds-tab-active, .ds-tab-active:hover { color: var(--brass-ink, #101a2c); background-image: linear-gradient(168deg, var(--plate-a, #eef2f8) 0%, var(--plate-b, #cfd7e6) 55%, var(--plate-c, #b3bfd3) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.28), 0 6px 18px -6px rgba(0, 0, 0, 0.5); text-shadow: var(--plate-shadow, none); } .ds-tab:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     },
     {
       "name": "Award Row",
@@ -249,46 +322,52 @@
       "refersTo": "podium-plaque",
       "description": "One team's award controls in the answer phase: rimmed chip with green plus and red minus numeral buttons.",
       "html": "<div class=\"ds-award\"><span class=\"ds-award-team\"><span class=\"ds-bib\" style=\"--bib:#f3c942\"></span><span class=\"ds-award-name\">Lag 1</span><span class=\"ds-award-score\">400</span></span><button class=\"ds-award-btn ds-award-plus\">+100</button><button class=\"ds-award-btn ds-award-minus\">−100</button></div>",
-      "css": ".ds-award { display: flex; align-items: center; gap: 8px; padding: 6px; border: 1px solid rgba(212, 166, 72, 0.55); border-radius: 6px; background: rgba(29, 20, 14, 0.7); box-shadow: inset 0 1px 0 rgba(243, 220, 147, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.5); font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); color: var(--cream, #fff2d6); } .ds-award-team { display: flex; flex: 1; align-items: center; gap: 8px; min-width: 0; padding: 0 8px; font-size: 15px; } .ds-bib { display: inline-block; flex-shrink: 0; width: 12px; height: 12px; border-radius: 999px; background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.75), var(--bib, #f3c942) 55%, rgba(0, 0, 0, 0.35)); box-shadow: 0 0 12px color-mix(in srgb, var(--bib, #f3c942) 40%, transparent); } .ds-award-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } .ds-award-score { margin-left: auto; color: rgba(255, 242, 214, 0.64); font-weight: 600; font-variant-numeric: tabular-nums lining-nums; } .ds-award-btn { min-height: 48px; min-width: 4.5rem; padding: 0 12px; border: 0; border-radius: 4px; font: inherit; font-size: 1.125rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; cursor: pointer; user-select: none; transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-award-plus { color: var(--bib-green, #48b97c); background: rgba(72, 185, 124, 0.22); } .ds-award-plus:hover, .ds-award-plus:active { background: rgba(72, 185, 124, 0.4); } .ds-award-minus { color: var(--bib-red, #e05252); background: rgba(224, 82, 82, 0.22); } .ds-award-minus:hover, .ds-award-minus:active { background: rgba(224, 82, 82, 0.4); } .ds-award-btn:focus-visible { outline: 2px solid var(--brass-light, #f3dc93); outline-offset: 3px; }"
+      "css": ".ds-award { display: flex; align-items: center; gap: 8px; padding: 6px; border: 1px solid color-mix(in srgb, var(--brass, #cfd7e6) 50%, transparent); border-radius: 6px; background: color-mix(in srgb, var(--stage-floor, #121c31) 70%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--brass-light, #eef2f8) 22%, transparent), inset 0 -1px 0 rgba(0, 0, 0, 0.35); font-family: var(--font-ui, Jost, 'Futura', 'Avenir Next', system-ui, sans-serif); color: var(--cream, #eef2f8); } .ds-award-team { display: flex; flex: 1; align-items: center; gap: 8px; min-width: 0; padding: 0 8px; font-size: 15px; } .ds-bib { display: inline-block; flex-shrink: 0; width: 12px; height: 12px; border-radius: 999px; background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.75), var(--bib, #f3c942) 55%, rgba(0, 0, 0, 0.35)); box-shadow: 0 0 12px color-mix(in srgb, var(--bib, #f3c942) 40%, transparent); } .ds-award-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } .ds-award-score { margin-left: auto; color: var(--cream-dim, rgba(238, 242, 248, 0.68)); font-weight: 600; font-variant-numeric: tabular-nums lining-nums; } .ds-award-btn { min-height: 48px; min-width: 4.5rem; padding: 0 12px; border: 0; border-radius: 4px; font: inherit; font-size: 1.125rem; font-weight: 600; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em; cursor: pointer; user-select: none; transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-award-plus { color: var(--bib-green, #48b97c); background: rgba(72, 185, 124, 0.22); } .ds-award-plus:hover, .ds-award-plus:active { background: rgba(72, 185, 124, 0.4); } .ds-award-minus { color: var(--bib-red, #e05252); background: rgba(224, 82, 82, 0.22); } .ds-award-minus:hover, .ds-award-minus:active { background: rgba(224, 82, 82, 0.4); } .ds-award-btn:focus-visible { outline: 2px solid var(--brass-light, #eef2f8); outline-offset: 3px; }"
     }
   ],
   "narrative": {
-    "northStar": "Kvitt eller dobbelt-studioet",
-    "overview": "The living room becomes an NRK quiz studio. The board is a lit money ladder standing on a black stage under one warm spotlight, not a blue grid of cards. Everything is built from four studio materials: stage black (matte, near-black brown), brass (bevelled gradient nameplates with engraved dark text), lamplit amber acrylic (the points panels, glowing from below, dark when spent), and one field of velvet red (the confirm-destructive colour and the warm bleed at the bottom of every stage). Cream is the light, never pure white.\n\nThe system has two densities. The big screen at /spill/[code] is a full-bleed single viewport with no scrolling, where every size is a clamp() of viewport width so a 5x6 board fills a TV and a 3x3 board fills it the same way. Everything else (landing, forms, editor, phone remote) is a plain, fast tool page on the same stage: same tokens, same materials, ordinary rem sizes, centered containers. The board is the show; the tools recede.\n\nMotion is theatrical but sparse: one spotlight scale-in for overlays, one envelope slide-up for the answer card, one photographic develop for answer images, one flash for a scoreboard plaque that just changed. Everything uses one custom ease and nothing loops. The category default that was refused is royal-blue tiles with gold serif numbers; this world never uses blue as a surface.",
+    "northStar": "Ett studio, sju lyssettinger",
+    "overview": "The living room is still a quiz studio: a lit money ladder standing on a dark stage, nameplates over the columns, a row of podium plaques for the teams. What changed is that the studio is no longer built from one fixed set of materials. The world is theme-parametric. Every surface is painted through the same small set of CSS custom properties, and a board chooses which of seven lighting rigs fills them: \"Midnatt og sølv\" (the default: deep navy, silver plates, cool white), \"Skifer og kobber\", \"Burgunder og krem\", \"Skog og dempet messing\", \"Lys scene\" (the one light theme), \"Monokrom\", and \"Studio\" (the original brass-and-lamplight look). The user rejected the brass glow as the default because it was too much; it survives only as the \"Studio\" theme, and only there do panels glow.\n\nThe token vocabulary kept its studio names as roles, not hues. brass is the accent and plate material, cream is the foreground light, stage is the ground, lamp is the points readout, velvet is the one secondary field. In \"Midnatt\" brass is silver and cream is cool white; in \"Lys scene\" the stage is paper and cream is near-black ink. Code never names a hue; it names a role, and the theme decides what that role looks like. The theme is stored on the board as content.theme and applied by themeStyle() to the root element of the four board surfaces: big screen, phone remote, board preview and editor. App chrome (landing, \"Nytt brett\", \"Koble til\", the 404) uses the :root defaults, which are the \"Midnatt\" values.\n\nThe system still has two densities. The big screen is one full-bleed viewport with no scrolling, where every size is a clamp() of viewport width so a 5x6 board and a 3x3 board both fill a TV. Everything else is a plain, fast tool page on the same stage: same roles, same utilities, ordinary rem sizes, centred containers. Type moved from a Didone to Young Serif, a sturdy low-contrast serif with a single weight, chosen because thin hairlines died at TV distance. Questions are now set in Jost semibold, and italics are gone from the type system. Motion is unchanged: one spotlight scale-in, one envelope slide-up, one photographic develop, one plaque flash, all on one ease.",
     "keyCharacteristics": [
-      "Stage black ground with a radial lamp pool at the top and a velvet bleed at the bottom",
-      "Brass plates for names and labels (categories, room code, leader, primary buttons); brass is a material, not an accent tint",
-      "Points live on lit acrylic panels: amber underglow, cream numerals with a soft halo, going dark when used",
-      "Bodoni Moda for words that are read as titles, Jost for numerals and every control",
-      "Tabular lining numerals everywhere numbers appear",
-      "One custom ease for all motion, all animations disabled under reduced motion"
+      "Seven selectable themes, each a complete set of custom properties; default is \"Midnatt og sølv\"",
+      "Token names are semantic roles (accent, foreground, ground, panel, plate) carried over from the studio vocabulary",
+      "Plates for names and labels, panels for points, plaques for teams, in every theme",
+      "Glow is a variable and is zero in six of seven themes; only \"Studio\" glows",
+      "Young Serif for words read as titles, Jost 600 for numerals, controls and the question itself",
+      "Tabular lining numerals everywhere numbers appear, one ease for all motion, everything static under reduced motion"
     ],
     "rules": [
-      { "name": "The Brass Is Metal Rule", "body": "Brass is never a flat background on a surface. Anything that reads as a plate uses the bevelled brass-plate gradient with its inset highlight and shadow; anything that is merely brass-edged uses brass-rim at 55% opacity.", "section": "colors" },
-      { "name": "The One Velvet Rule", "body": "Velvet red appears in exactly two places: the bottom bleed of a stage and the confirm-reset button. It is not a hover colour, an error colour or a decorative field.", "section": "colors" },
-      { "name": "The No Blue Surface Rule", "body": "Blue exists only as a team bib. There are no blue tiles, blue links or blue focus rings.", "section": "colors" },
-      { "name": "The Two Voices Rule", "body": "Bodoni speaks for names and titles (board title, category, team name, answer). Jost speaks for numbers and actions (points, scores, buttons, questions). No third face, no Bodoni in a button, no Jost in a nameplate.", "section": "typography" },
+      { "name": "The Roles Not Hues Rule", "body": "A component names a role (brass, cream, stage-floor, panel-fg), never a colour. No hex, rgb or Tailwind palette colour may appear in a component or page, because it will be wrong in six of seven themes. The only exceptions are the eight bib colours and the QR code's module colours.", "section": "colors" },
+      { "name": "The Theme Root Rule", "body": "A theme is applied once, as inline custom properties from themeStyle() on the root element of a board surface. Nothing below the root re-declares a theme variable, and app chrome never applies a theme; it inherits the :root \"Midnatt\" defaults.", "section": "colors" },
+      { "name": "The Plate Is Material Rule", "body": "Anything that reads as a plate uses the three-stop plate gradient with its inset highlight and bottom edge; anything merely accent-edged uses the rim at 50% accent. The accent is not painted flat on a surface.", "section": "colors" },
+      { "name": "The One Velvet Rule", "body": "The velvet utility appears in exactly one place: the confirm-reset button. It is not a hover colour, an error colour or a decorative field.", "section": "colors" },
+      { "name": "The Two Voices Rule", "body": "Young Serif speaks for names and titles (board title, category, team name, answer). Jost speaks for numbers, actions and the question (points, scores, buttons, tabs, question text). No third face, no serif in a button, no Jost on a nameplate.", "section": "typography" },
+      { "name": "The One Weight Rule", "body": "Young Serif is loaded at 400 only. Weight utilities on display text do not change the face: font-medium renders as 400 and font-semibold or font-bold are browser-synthesised. Hierarchy in the display face comes from size and colour, not weight; treat existing weight classes on display text as inert.", "section": "typography" },
+      { "name": "The No Italic Rule", "body": "The display face has no italic and the type system uses none. The single remaining <em> on the landing hero renders as a synthesised slant and is emphasis by colour, not by style.", "section": "typography" },
       { "name": "The Tabular Numeral Rule", "body": "Every number is set with the numeral utility or inherits the global tabular lining feature settings. Scores roll from old to new value over 700ms and must not shift width while doing so.", "section": "typography" },
-      { "name": "The Lit-Or-Dark Rule", "body": "A points panel is either fully lit (glow, halo, cream) or fully dark (flat, faint, no shadow). There is no half state; the transition between them is 300ms on the stage ease.", "section": "elevation" },
-      { "name": "The Glow Belongs To Light Rule", "body": "Only things that emit light in the studio glow: lit panels, the lamp readout, bib dots, the flash on a plaque that just scored. Brass reflects, it does not glow.", "section": "elevation" }
+      { "name": "The Lit-Or-Dark Rule", "body": "A points panel is either lit (panel face, panel ink, ring) or dark (flat unlit face, faint numeral, no shadow). There is no half state; the transition between them is 300ms on the stage ease.", "section": "elevation" },
+      { "name": "The Glow Is Studio-Only Rule", "body": "Glow is glow-size, and only \"Studio\" sets it above zero. No component adds its own glow; the two remaining hardcoded amber glows (overlay points halo, plaque flash) are debt to be moved onto lamp-glow.", "section": "elevation" }
     ],
     "dos": [
-      "Do build every new page on the stage-spotlight background inside a min-h-dvh flex column with the site header, and let the spotlight pool sit at the top.",
-      "Do paint anything named or titled on a brass plate with engraved brass-ink Bodoni, and anything counted on a lit panel or plaque in tabular Jost.",
-      "Do size big-screen text with clamp() against viewport width so it survives a 5x6 board on a TV at 2 to 5 metres; clue text may reach 7.2rem.",
+      "Do build every new page on the stage-spotlight background inside a min-h-dvh flex column with the site header, and apply themeStyle() on the root when the page belongs to a board.",
+      "Do colour everything through role tokens (brass, cream, stage-floor, panel-fg, plate-a) so it survives all seven themes; check a change in \"Lys scene\" and \"Burgunder\" as well as the default, since those flip panel and plate polarity.",
+      "Do paint anything named or titled on a plate in plate ink and Young Serif, and anything counted on a panel or plaque in tabular Jost 600.",
+      "Do size big-screen text with clamp() against viewport width so it survives an 8x8 board on a TV at 2 to 5 metres; clue text may reach 7.2rem.",
       "Do keep controls at least 48px tall (tap) on any surface a host touches, and 56px for the one primary action on a view.",
       "Do use exactly one brass button per view; every other action is outline or ghost.",
-      "Do mark state with light: lit versus unlit panels, the flash on a changed plaque, the green dot for a live connection.",
+      "Do mark state with material, not colour: lit versus unlit panels, plate versus rim for the leader and the selected theme, the green dot for a live connection.",
       "Do show all UI copy in Norwegian bokmål with verb-first host labels."
     ],
     "donts": [
-      "Don't use blue as any surface, link or focus colour; blue exists only as the team bib.",
-      "Don't use pure white anywhere; the light in this studio is cream.",
-      "Don't flatten brass into a solid fill or a tinted border on a plate; plates use the bevelled gradient and rims use the 55% brass hairline.",
-      "Don't add velvet red outside the stage bleed and the reset confirmation.",
-      "Don't add drop shadows to cards, inputs or buttons; depth comes from inset highlights and translucent floors, and only lit things glow.",
-      "Don't put Bodoni on a button or a numeral, or Jost on a nameplate.",
+      "Don't hardcode a hue in a component or page, or reach for a Tailwind palette colour; the only fixed colours are the eight bibs and the QR module colours.",
+      "Don't add glow, halo or amber to a component; glow is glow-size and belongs to the \"Studio\" theme alone.",
+      "Don't flatten the accent into a solid fill on a plate or a tinted border; plates use the three-stop gradient and rims use the 50% accent hairline.",
+      "Don't add velvet outside the reset confirmation.",
+      "Don't add drop shadows to cards, inputs or buttons; depth comes from inset highlights and translucent floors.",
+      "Don't use italics anywhere, or rely on font-weight to differentiate display text; Young Serif has one weight and no italic.",
+      "Don't put Young Serif on a button, a numeral or the question, or Jost on a nameplate.",
       "Don't let the big-screen board scroll, wrap category plates past two lines, or introduce a second animation ease.",
+      "Don't apply a theme anywhere but the root of a board surface, and never on app chrome.",
       "Don't write code comments in this repository; the design is carried by tokens, utilities and this document."
     ]
   }

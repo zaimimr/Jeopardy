@@ -33,7 +33,7 @@ export function ClueMedia({
       {hasText ? (
         <p
           className={`max-w-[24ch] text-balance text-center leading-[1.1] ${textSize} ${
-            variant === "answer" ? "font-display text-brass-light" : "font-ui font-semibold text-cream"
+            variant === "answer" ? "font-display text-brass-light" : "font-ui text-cream"
           }`}
         >
           {media.text}

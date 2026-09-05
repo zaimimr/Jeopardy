@@ -25,7 +25,7 @@ export default async function BoardPage({ params }: PageProps<"/brett/[id]">) {
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-10 px-5 pb-16 pt-6 md:px-8">
         <div className="flex flex-col gap-2">
-          <h1 className="font-display text-balance text-4xl font-medium leading-tight md:text-6xl">{board.title}</h1>
+          <h1 className="font-display text-balance text-4xl leading-tight md:text-6xl">{board.title}</h1>
           {board.subtitle ? <p className="font-display text-2xl text-brass-light">{board.subtitle}</p> : null}
           <p className="text-cream-dim">
             {board.content.categories.length} kategorier · {rows} rader · {filled} av {total} spørsmål ferdig utfylt · tema:{" "}
@@ -41,7 +41,7 @@ export default async function BoardPage({ params }: PageProps<"/brett/[id]">) {
           style={{ gridTemplateColumns: `repeat(${board.content.categories.length}, minmax(0, 1fr))` }}
         >
           {board.content.categories.map((category) => (
-            <div key={category.id} className="brass-plate flex min-h-12 items-center justify-center rounded-sm px-2 text-center font-display text-sm font-semibold leading-tight md:text-base">
+            <div key={category.id} className="brass-plate flex min-h-12 items-center justify-center rounded-sm px-2 text-center font-display text-sm leading-tight md:text-base">
               {category.title}
             </div>
           ))}

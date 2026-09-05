@@ -79,7 +79,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
     >
       <header className="flex items-end justify-between gap-6 pb-[1.4vh]">
         <div className="min-w-0">
-          <h1 className="font-display truncate text-[clamp(1.6rem,3.4vw,3.6rem)] font-medium leading-none tracking-tight">
+          <h1 className="font-display truncate text-[clamp(1.6rem,3.4vw,3.6rem)] leading-none tracking-tight">
             {board.title}
           </h1>
           {board.subtitle ? (
@@ -179,10 +179,10 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
           className="anim-spotlight absolute inset-0 z-30 flex flex-col items-center justify-center gap-6 bg-stage-deep/92 backdrop-blur-sm"
           onClick={() => setShowQr(false)}
         >
-          <p className="font-display text-[clamp(1.6rem,3vw,3rem)] font-medium">Skann med mobilen</p>
+          <p className="font-display text-[clamp(1.6rem,3vw,3rem)]">Skann med mobilen</p>
           <div className="brass-plate rounded-md p-4">
-            <div className="rounded-sm bg-cream p-4">
-              {origin ? <QRCodeSVG value={remoteUrl} size={280} bgColor="#fff2d6" fgColor="#2a1c08" level="M" /> : null}
+            <div className="rounded-sm bg-white p-4">
+              {origin ? <QRCodeSVG value={remoteUrl} size={280} bgColor="#ffffff" fgColor="#111111" level="M" /> : null}
             </div>
           </div>
           <p className="text-center text-[clamp(1rem,1.6vw,1.5rem)] text-cream-dim">
@@ -231,10 +231,10 @@ function ClueOverlay({
       className="anim-spotlight stage-spotlight absolute inset-0 z-20 flex flex-col px-[3vw] pb-[2vh] pt-[2.4vh]"
     >
       <div className="flex items-center justify-between gap-4">
-        <span className="brass-plate rounded-sm px-4 py-2 font-display text-[clamp(1rem,1.8vw,1.8rem)] font-semibold tracking-wide">
+        <span className="brass-plate rounded-sm px-4 py-2 font-display text-[clamp(1rem,1.8vw,1.8rem)] tracking-wide">
           {categoryTitle}
         </span>
-        <span className="numeral text-[clamp(1.6rem,3.2vw,3.4rem)] text-lamp [text-shadow:0_0_24px_rgba(255,226,163,0.55)]">
+        <span className="numeral text-[clamp(1.6rem,3.2vw,3.4rem)] text-lamp [text-shadow:0_0_var(--glow-size)_var(--lamp-glow)]">
           {formatPoints(points)}
         </span>
       </div>

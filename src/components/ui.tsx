@@ -63,7 +63,7 @@ export function Textarea(props: ComponentProps<"textarea">) {
 
 export function Plate({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`brass-plate rounded-sm px-4 py-2 font-display text-lg font-semibold tracking-wide ${className}`}>
+    <div className={`brass-plate rounded-sm px-4 py-2 font-display text-lg tracking-wide ${className}`}>
       {children}
     </div>
   );
@@ -72,7 +72,7 @@ export function Plate({ children, className = "" }: { children: ReactNode; class
 export function Marquee({ title, subtitle }: { title: string; subtitle?: string | null }) {
   return (
     <div className="flex flex-col gap-1">
-      <h1 className="font-display text-balance text-4xl font-medium leading-[1.02] tracking-tight text-cream md:text-6xl">
+      <h1 className="font-display text-balance text-4xl leading-[1.02] tracking-tight text-cream md:text-6xl">
         {title}
       </h1>
       {subtitle ? <p className="font-display text-xl text-brass-light md:text-2xl">{subtitle}</p> : null}

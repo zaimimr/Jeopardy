@@ -8,7 +8,7 @@ export function MyBoards() {
   if (boards.length === 0) return null;
   return (
     <section className="flex flex-col gap-4">
-      <h2 className="font-display text-2xl font-medium">Brettene dine på denne enheten</h2>
+      <h2 className="font-display text-2xl">Brettene dine på denne enheten</h2>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {boards.map((board) => (
           <li key={board.id} className="brass-rim flex items-center justify-between gap-3 rounded-md bg-stage-floor/60 px-4 py-3">
