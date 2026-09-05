@@ -45,8 +45,11 @@ export const reduceGame = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
     case "openClue":
       return { ...state, active: { clueId: action.clueId, phase: "question" } };
-    case "showAnswer":
-      return state.active ? { ...state, active: { ...state.active, phase: "answer" } } : state;
+    case "showAnswer": {
+      if (!state.active) return state;
+      const used = state.used.includes(state.active.clueId) ? state.used : [...state.used, state.active.clueId];
+      return { ...state, used, active: { ...state.active, phase: "answer" } };
+    }
     case "showQuestion":
       return state.active ? { ...state, active: { ...state.active, phase: "question" } } : state;
     case "closeClue": {
