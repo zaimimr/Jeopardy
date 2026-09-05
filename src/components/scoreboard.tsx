@@ -16,12 +16,8 @@ function RollingScore({ value }: { value: number }) {
     previous.current = value;
     if (from === to) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setShown(to);
-      return;
-    }
     const start = performance.now();
-    const duration = 700;
+    const duration = reduce ? 1 : 700;
     let frame = 0;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / duration);
@@ -39,18 +35,20 @@ export function Scoreboard({ teams, compact = false }: { teams: Team[]; compact?
   const ranked = rankedTeams(teams);
   const top = ranked[0]?.score ?? 0;
   const [flashId, setFlashId] = useState<string | null>(null);
-  const lastScores = useRef<Record<string, number>>({});
+  const [seenTeams, setSeenTeams] = useState(teams);
+  if (seenTeams !== teams) {
+    setSeenTeams(teams);
+    const changed = teams.find((team) => {
+      const before = seenTeams.find((seen) => seen.id === team.id);
+      return before !== undefined && before.score !== team.score;
+    });
+    if (changed) setFlashId(changed.id);
+  }
   useEffect(() => {
-    for (const team of teams) {
-      const before = lastScores.current[team.id];
-      if (before !== undefined && before !== team.score) setFlashId(team.id);
-      lastScores.current[team.id] = team.score;
-    }
-    if (flashId) {
-      const timer = window.setTimeout(() => setFlashId(null), 900);
-      return () => window.clearTimeout(timer);
-    }
-  }, [teams, flashId]);
+    if (!flashId) return;
+    const timer = window.setTimeout(() => setFlashId(null), 900);
+    return () => window.clearTimeout(timer);
+  }, [flashId]);
 
   return (
     <ol className={`grid gap-3 ${compact ? "grid-cols-2" : ""}`} style={compact ? undefined : { gridTemplateColumns: `repeat(${ranked.length}, minmax(0, 1fr))` }}>

@@ -12,15 +12,16 @@ export type SyncStatus = "connecting" | "live" | "polling";
 type Broadcast = { state: Game["state"]; version: number; origin: string };
 
 const POLL_MS = 4000;
+const hasRealtime = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 export function useGame(initial: Game) {
   const [game, setGame] = useState<Game>(initial);
-  const [status, setStatus] = useState<SyncStatus>("connecting");
+  const [status, setStatus] = useState<SyncStatus>(hasRealtime ? "connecting" : "polling");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(0);
   const versionRef = useRef(initial.version);
   const channelRef = useRef<RealtimeChannel | null>(null);
-  const originRef = useRef(Math.random().toString(36).slice(2));
+  const originRef = useRef("");
 
   const accept = useCallback((incoming: Game) => {
     if (incoming.version <= versionRef.current) return;
@@ -30,10 +31,8 @@ export function useGame(initial: Game) {
 
   useEffect(() => {
     const supabase = supabaseBrowser();
-    if (!supabase) {
-      setStatus("polling");
-      return;
-    }
+    if (!supabase) return;
+    if (!originRef.current) originRef.current = crypto.randomUUID();
     const channel = supabase.channel(`game:${initial.code}`, { config: { broadcast: { self: false } } });
     channel
       .on("broadcast", { event: "state" }, ({ payload }) => {

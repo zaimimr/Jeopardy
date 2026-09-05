@@ -7,6 +7,7 @@ import { getBoardForEdit, saveBoard } from "@/lib/actions/boards";
 import { createCategory, createClue, hasMedia, MAX_COLUMNS, MAX_ROWS, POINT_STEP } from "@/lib/board";
 import { createGame } from "@/lib/actions/games";
 import { localBoardKey, rememberBoard } from "@/lib/local-boards";
+import { useClientValue, useOrigin } from "@/lib/use-client-value";
 import type { Board, BoardContent, Category, Clue, Media } from "@/lib/types";
 import { uploadImage } from "@/lib/upload";
 import { SiteHeader } from "./site-header";
@@ -18,7 +19,7 @@ type Selection = { categoryId: string; clueId: string } | null;
 
 export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromUrl: string | null }) {
   const router = useRouter();
-  const [key, setKey] = useState<string | null>(null);
+  const key = useClientValue(() => keyFromUrl ?? localBoardKey(boardId), keyFromUrl);
   const [board, setBoard] = useState<Board | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [saveState, setSaveState] = useState<SaveState>("idle");
@@ -29,12 +30,8 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
   const latest = useRef<Board | null>(null);
 
   useEffect(() => {
-    const resolved = keyFromUrl ?? localBoardKey(boardId);
-    if (!resolved) {
-      setLoadError("Du mangler redigeringsnøkkelen til dette brettet. Åpne redigeringslenken du fikk da du lagde brettet.");
-      return;
-    }
-    setKey(resolved);
+    const resolved = key;
+    if (!resolved) return;
     getBoardForEdit(boardId, resolved)
       .then((loaded) => {
         if (!loaded) {
@@ -47,7 +44,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
         if (keyFromUrl) router.replace(`/brett/${boardId}/rediger`);
       })
       .catch((caught: unknown) => setLoadError(caught instanceof Error ? caught.message : "Klarte ikke å laste brettet."));
-  }, [boardId, keyFromUrl, router]);
+  }, [boardId, key, keyFromUrl, router]);
 
   const persist = useCallback(async () => {
     const current = latest.current;
@@ -114,13 +111,16 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
     }
   };
 
-  if (loadError) {
+  const missingKey = key === null;
+  if (loadError || missingKey) {
     return (
       <div className="stage-spotlight flex min-h-dvh flex-col">
         <SiteHeader />
         <main className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center gap-4 px-5 pb-16">
           <h1 className="font-display text-3xl font-medium">Kan ikke redigere</h1>
-          <p className="text-lg text-cream-dim">{loadError}</p>
+          <p className="text-lg text-cream-dim">
+            {loadError ?? "Du mangler redigeringsnøkkelen til dette brettet. Åpne redigeringslenken du fikk da du lagde brettet."}
+          </p>
           <Link href={`/brett/${boardId}`} className="text-brass-light underline-offset-4 hover:underline">
             Se brettet uten å redigere
           </Link>
@@ -309,8 +309,7 @@ function SaveIndicator({ state }: { state: SaveState }) {
 
 function ShareLink({ boardId, editKey }: { boardId: string; editKey: string }) {
   const [copied, setCopied] = useState<"edit" | "play" | null>(null);
-  const [origin, setOrigin] = useState("");
-  useEffect(() => setOrigin(window.location.origin), []);
+  const origin = useOrigin();
   const copy = async (kind: "edit" | "play") => {
     const url = kind === "edit" ? `${origin}/brett/${boardId}/rediger?key=${editKey}` : `${origin}/brett/${boardId}`;
     try {

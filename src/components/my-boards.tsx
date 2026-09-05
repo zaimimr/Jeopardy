@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useLocalBoards } from "@/lib/local-boards";
 
 export function MyBoards() {
-  const { boards, ready } = useLocalBoards();
-  if (!ready || boards.length === 0) return null;
+  const boards = useLocalBoards();
+  if (boards.length === 0) return null;
   return (
     <section className="flex flex-col gap-4">
       <h2 className="font-display text-2xl font-medium">Brettene dine på denne enheten</h2>

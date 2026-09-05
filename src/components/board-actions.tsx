@@ -2,21 +2,18 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { duplicateBoard } from "@/lib/actions/boards";
 import { createGame } from "@/lib/actions/games";
 import { localBoardKey, rememberBoard } from "@/lib/local-boards";
+import { useClientValue } from "@/lib/use-client-value";
 import { Button } from "./ui";
 
 export function BoardActions({ boardId, title }: { boardId: string; title: string }) {
   const router = useRouter();
-  const [canEdit, setCanEdit] = useState(false);
+  const canEdit = useClientValue(() => Boolean(localBoardKey(boardId)), false);
   const [busy, setBusy] = useState<"start" | "copy" | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setCanEdit(Boolean(localBoardKey(boardId)));
-  }, [boardId]);
 
   const start = async () => {
     setBusy("start");

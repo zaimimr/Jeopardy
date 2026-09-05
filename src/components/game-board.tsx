@@ -3,6 +3,7 @@
 import { QRCodeSVG } from "qrcode.react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { findClue } from "@/lib/game";
+import { useClientValue } from "@/lib/use-client-value";
 import { useGame, type SyncStatus } from "@/lib/use-game";
 import type { GameWithBoard, Team } from "@/lib/types";
 import { ClueMedia } from "./clue-media";
@@ -22,11 +23,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
   const { board } = initial;
   const { state } = game;
   const [showQr, setShowQr] = useState(false);
-  const [origin, setOrigin] = useState("");
-
-  useEffect(() => {
-    setOrigin(window.location.origin);
-  }, []);
+  const origin = useClientValue(() => window.location.origin, "");
 
   const remoteUrl = `${origin}/spill/${game.code}/fjernkontroll`;
   const rows = useMemo(

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { findClue, MAX_TEAMS, rankedTeams } from "@/lib/game";
 import { BIB_COLORS, type GameWithBoard, type Team } from "@/lib/types";
 import { useGame, type SyncStatus } from "@/lib/use-game";
@@ -22,15 +22,12 @@ export function Remote({ initial }: { initial: GameWithBoard }) {
   const { game, dispatch, status, error, pending } = useGame(initial);
   const { board } = initial;
   const { state } = game;
-  const [tab, setTab] = useState<Tab>("spill");
+  const [chosenTab, setTab] = useState<Tab>("spill");
+  const tab: Tab = state.active ? "spill" : chosenTab;
   const [confirmReset, setConfirmReset] = useState(false);
   const active = state.active ? findClue(board, state.active.clueId) : null;
   const lastEvent = state.log.at(-1);
   const lastTeam = lastEvent ? state.teams.find((team) => team.id === lastEvent.teamId) : null;
-
-  useEffect(() => {
-    if (state.active) setTab("spill");
-  }, [state.active]);
 
   return (
     <main className="stage-spotlight flex min-h-dvh flex-col text-cream">
@@ -370,31 +367,31 @@ function TeamEditor({
   onScore: (score: number) => void;
   onRemove: () => void;
 }) {
-  const [name, setName] = useState(team.name);
-  const [score, setScore] = useState(String(team.score));
-  useEffect(() => setName(team.name), [team.name]);
-  useEffect(() => setScore(String(team.score)), [team.score]);
   return (
     <li className="brass-rim flex flex-col gap-3 rounded-md bg-stage-floor/70 p-3">
       <div className="flex items-center gap-2">
         <BibDot color={team.color} size={16} />
         <input
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          onBlur={() => name.trim() && name !== team.name && onRename(name)}
+          key={team.name}
+          defaultValue={team.name}
+          onBlur={(event) => {
+            const name = event.target.value;
+            if (name.trim() && name !== team.name) onRename(name);
+          }}
           onKeyDown={(event) => event.key === "Enter" && (event.target as HTMLInputElement).blur()}
           maxLength={24}
           aria-label="Lagnavn"
           className="min-w-0 flex-1 rounded bg-stage-deep/70 px-3 py-2 font-display text-lg text-cream"
         />
         <input
-          value={score}
+          key={team.score}
+          defaultValue={String(team.score)}
           inputMode="numeric"
-          onChange={(event) => setScore(event.target.value.replace(/[^\d-]/g, ""))}
-          onBlur={() => {
-            const parsed = Number.parseInt(score, 10);
+          onKeyDown={(event) => event.key === "Enter" && (event.target as HTMLInputElement).blur()}
+          onBlur={(event) => {
+            const parsed = Number.parseInt(event.target.value.replace(/[^\d-]/g, ""), 10);
             if (Number.isFinite(parsed) && parsed !== team.score) onScore(parsed);
-            else setScore(String(team.score));
+            else event.target.value = String(team.score);
           }}
           aria-label="Poeng"
           className="numeral w-24 rounded bg-stage-deep/70 px-3 py-2 text-right text-lg text-cream"

@@ -1,18 +1,25 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 export type LocalBoard = { id: string; title: string; key: string; savedAt: number };
 
 const STORAGE_KEY = "jeopardy.boards";
+const EMPTY: LocalBoard[] = [];
+const listeners = new Set<() => void>();
+let cachedRaw: string | null | undefined;
+let cachedBoards: LocalBoard[] = EMPTY;
 
 const read = (): LocalBoard[] => {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (raw === cachedRaw) return cachedBoards;
+    cachedRaw = raw;
     const parsed = raw ? (JSON.parse(raw) as LocalBoard[]) : [];
-    return Array.isArray(parsed) ? parsed : [];
+    cachedBoards = Array.isArray(parsed) ? parsed : EMPTY;
+    return cachedBoards;
   } catch {
-    return [];
+    return cachedBoards;
   }
 };
 
@@ -22,6 +29,16 @@ const write = (boards: LocalBoard[]) => {
   } catch {
     return;
   }
+  listeners.forEach((listener) => listener());
+};
+
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
+  window.addEventListener("storage", listener);
+  return () => {
+    listeners.delete(listener);
+    window.removeEventListener("storage", listener);
+  };
 };
 
 export const rememberBoard = (board: Omit<LocalBoard, "savedAt">) => {
@@ -34,14 +51,5 @@ export const forgetBoard = (id: string) => write(read().filter((entry) => entry.
 export const localBoardKey = (id: string) => read().find((entry) => entry.id === id)?.key ?? null;
 
 export function useLocalBoards() {
-  const [boards, setBoards] = useState<LocalBoard[]>([]);
-  const [ready, setReady] = useState(false);
-  const refresh = useCallback(() => {
-    setBoards(read());
-    setReady(true);
-  }, []);
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
-  return { boards, ready, refresh };
+  return useSyncExternalStore(subscribe, read, () => EMPTY);
 }
