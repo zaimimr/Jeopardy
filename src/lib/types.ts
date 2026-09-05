@@ -29,7 +29,7 @@ export type Board = {
   updatedAt: string;
 };
 
-export const BIB_COLORS = ["yellow", "green", "red", "blue", "white", "purple"] as const;
+export const BIB_COLORS = ["yellow", "green", "red", "blue", "white", "purple", "orange", "pink"] as const;
 export type BibColor = (typeof BIB_COLORS)[number];
 
 export type Team = {
@@ -61,6 +61,7 @@ export type GameAction =
   | { type: "showAnswer" }
   | { type: "showQuestion" }
   | { type: "closeClue" }
+  | { type: "cancelClue" }
   | { type: "toggleUsed"; clueId: string }
   | { type: "award"; teamId: string; delta: number; clueId?: string | null }
   | { type: "undo" }

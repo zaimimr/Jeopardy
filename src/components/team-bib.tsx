@@ -7,6 +7,8 @@ export const bibVar: Record<BibColor, string> = {
   blue: "var(--bib-blue)",
   white: "var(--bib-white)",
   purple: "var(--bib-purple)",
+  orange: "var(--bib-orange)",
+  pink: "var(--bib-pink)",
 };
 
 export const bibLabel: Record<BibColor, string> = {
@@ -16,6 +18,8 @@ export const bibLabel: Record<BibColor, string> = {
   blue: "Blå",
   white: "Hvit",
   purple: "Lilla",
+  orange: "Oransje",
+  pink: "Rosa",
 };
 
 export function BibDot({ color, size = 14, className = "" }: { color: BibColor; size?: number; className?: string }) {

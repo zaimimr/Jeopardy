@@ -51,7 +51,10 @@ export function Scoreboard({ teams, compact = false }: { teams: Team[]; compact?
   }, [flashId]);
 
   return (
-    <ol className={`grid gap-3 ${compact ? "grid-cols-2" : ""}`} style={compact ? undefined : { gridTemplateColumns: `repeat(${ranked.length}, minmax(0, 1fr))` }}>
+    <ol
+      className={`grid ${compact ? "grid-cols-2 gap-3" : ranked.length > 5 ? "gap-2" : "gap-3"}`}
+      style={compact ? undefined : { gridTemplateColumns: `repeat(${ranked.length}, minmax(0, 1fr))` }}
+    >
       {ranked.map((team, index) => {
         const leader = index === 0 && team.score === top && ranked.filter((t) => t.score === top).length === 1;
         return (
@@ -65,12 +68,12 @@ export function Scoreboard({ teams, compact = false }: { teams: Team[]; compact?
             <div className="flex min-w-0 items-center gap-2">
               <BibDot color={team.color} size={compact ? 12 : 16} />
               <span
-                className={`truncate font-display ${compact ? "text-lg" : "text-[clamp(1rem,1.6vw,1.6rem)]"} font-medium tracking-wide`}
+                className={`truncate font-display ${compact ? "text-lg" : ranked.length > 5 ? "text-[clamp(0.9rem,1.25vw,1.3rem)]" : "text-[clamp(1rem,1.6vw,1.6rem)]"} font-medium tracking-wide`}
               >
                 {team.name}
               </span>
             </div>
-            <span className={`numeral ${compact ? "text-3xl" : "text-[clamp(2rem,4vw,4.2rem)]"} leading-none`}>
+            <span className={`numeral ${compact ? "text-3xl" : ranked.length > 5 ? "text-[clamp(1.6rem,3vw,3.2rem)]" : "text-[clamp(2rem,4vw,4.2rem)]"} leading-none`}>
               <RollingScore value={team.score} />
             </span>
           </li>

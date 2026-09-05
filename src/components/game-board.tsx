@@ -43,7 +43,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
       if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
       if (event.key === "Escape") {
         if (showQr) setShowQr(false);
-        else if (state.active) void dispatch({ type: "closeClue" });
+        else if (state.active) void dispatch({ type: "cancelClue" });
       } else if (event.key === " " || event.key === "Enter") {
         if (state.active) {
           event.preventDefault();
@@ -167,6 +167,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
           onAdvance={advance}
           onAward={(team, delta) => dispatch({ type: "award", teamId: team.id, delta, clueId: active.clue.id })}
           onBackToQuestion={() => dispatch({ type: "showQuestion" })}
+          onCancel={() => dispatch({ type: "cancelClue" })}
           onClose={() => dispatch({ type: "closeClue" })}
         />
       ) : null}
@@ -205,6 +206,7 @@ function ClueOverlay({
   onAdvance,
   onAward,
   onBackToQuestion,
+  onCancel,
   onClose,
 }: {
   categoryTitle: string;
@@ -217,6 +219,7 @@ function ClueOverlay({
   onAdvance: () => void;
   onAward: (team: Team, delta: number) => void;
   onBackToQuestion: () => void;
+  onCancel: () => void;
   onClose: () => void;
 }) {
   return (
@@ -297,7 +300,11 @@ function ClueOverlay({
             <button type="button" onClick={onBackToQuestion} className="tap rounded-md px-4 text-cream-dim hover:text-cream">
               Tilbake til spørsmålet
             </button>
-          ) : null}
+          ) : (
+            <button type="button" onClick={onCancel} className="tap rounded-md px-4 text-cream-dim hover:text-cream">
+              Feil rute? Tilbake til brettet
+            </button>
+          )}
           <button
             type="button"
             onClick={phase === "question" ? onAdvance : onClose}

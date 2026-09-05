@@ -1,6 +1,6 @@
 import { BIB_COLORS, type BibColor, type Board, type Clue, type GameAction, type GameState, type Team } from "./types";
 
-export const MAX_TEAMS = 6;
+export const MAX_TEAMS = 8;
 
 export const shortId = () => Math.random().toString(36).slice(2, 9);
 
@@ -54,6 +54,8 @@ export const reduceGame = (state: GameState, action: GameAction): GameState => {
       const used = state.used.includes(state.active.clueId) ? state.used : [...state.used, state.active.clueId];
       return { ...state, used, active: null };
     }
+    case "cancelClue":
+      return state.active ? { ...state, active: null } : state;
     case "toggleUsed":
       return {
         ...state,

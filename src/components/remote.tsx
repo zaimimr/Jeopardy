@@ -76,6 +76,7 @@ export function Remote({ initial }: { initial: GameWithBoard }) {
               answerText={active.clue.answer.text}
               onShowAnswer={() => dispatch({ type: "showAnswer" })}
               onShowQuestion={() => dispatch({ type: "showQuestion" })}
+              onCancel={() => dispatch({ type: "cancelClue" })}
               onClose={() => dispatch({ type: "closeClue" })}
               onAward={(team, delta) => dispatch({ type: "award", teamId: team.id, delta, clueId: active.clue.id })}
               pending={pending}
@@ -270,6 +271,7 @@ function ActiveClue({
   answerText,
   onShowAnswer,
   onShowQuestion,
+  onCancel,
   onClose,
   onAward,
   pending,
@@ -282,6 +284,7 @@ function ActiveClue({
   answerText?: string;
   onShowAnswer: () => void;
   onShowQuestion: () => void;
+  onCancel: () => void;
   onClose: () => void;
   onAward: (team: Team, delta: number) => void;
   pending: boolean;
@@ -304,9 +307,14 @@ function ActiveClue({
       </div>
 
       {phase === "question" ? (
-        <Button variant="outline" className="min-h-12 text-base" onClick={onShowAnswer} disabled={pending}>
-          Vis svar på skjermen
-        </Button>
+        <div className="grid grid-cols-[1fr_2fr] gap-2">
+          <Button variant="ghost" className="min-h-12 text-base" onClick={onCancel} disabled={pending}>
+            Feil rute? Tilbake
+          </Button>
+          <Button variant="outline" className="min-h-12 text-base" onClick={onShowAnswer} disabled={pending}>
+            Vis svar på skjermen
+          </Button>
+        </div>
       ) : (
         <>
           <ul className="flex flex-col gap-2">
