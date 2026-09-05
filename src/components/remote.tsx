@@ -74,6 +74,7 @@ export function Remote({ initial }: { initial: GameWithBoard }) {
               teams={state.teams}
               questionText={active.clue.question.text}
               answerText={active.clue.answer.text}
+              answerImage={active.clue.answer.image}
               onShowAnswer={() => dispatch({ type: "showAnswer" })}
               onShowQuestion={() => dispatch({ type: "showQuestion" })}
               onCancel={() => dispatch({ type: "cancelClue" })}
@@ -269,6 +270,7 @@ function ActiveClue({
   teams,
   questionText,
   answerText,
+  answerImage,
   onShowAnswer,
   onShowQuestion,
   onCancel,
@@ -282,6 +284,7 @@ function ActiveClue({
   teams: Team[];
   questionText?: string;
   answerText?: string;
+  answerImage?: string;
   onShowAnswer: () => void;
   onShowQuestion: () => void;
   onCancel: () => void;
@@ -303,7 +306,15 @@ function ActiveClue({
           <p className="font-display text-balance text-[clamp(2rem,9vw,3.6rem)] font-medium leading-[1.05] text-brass-light">
             {answerText?.trim() || <span className="italic text-cream-dim">Bilde eller tomt</span>}
           </p>
-        ) : null}
+        ) : (
+          <div className="mt-2 flex w-full flex-col items-center gap-2 border-t border-brass/25 pt-4">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-brass">Svar · bare du ser dette</span>
+            {answerImage ? <img src={answerImage} alt="" className="max-h-28 rounded-sm object-contain" /> : null}
+            <p className="font-display text-balance text-[clamp(1.25rem,5vw,1.9rem)] leading-tight text-brass-light">
+              {answerText?.trim() || (answerImage ? "" : <span className="italic text-cream-dim">Ingen svar lagt inn</span>)}
+            </p>
+          </div>
+        )}
       </div>
 
       {phase === "question" ? (
