@@ -33,14 +33,14 @@ export function ClueMedia({
       {hasText ? (
         <p
           className={`max-w-[24ch] text-balance text-center leading-[1.1] ${textSize} ${
-            variant === "answer" ? "font-display font-medium text-brass-light" : "font-ui font-medium text-cream"
+            variant === "answer" ? "font-display text-brass-light" : "font-ui font-semibold text-cream"
           }`}
         >
           {media.text}
         </p>
       ) : null}
       {!hasImage && !hasText ? (
-        <p className="font-display text-3xl italic text-cream-faint">
+        <p className="font-display text-3xl text-cream-faint">
           {variant === "answer" ? "Ingen svar lagt inn" : "Ingen spørsmål lagt inn"}
         </p>
       ) : null}

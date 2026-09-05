@@ -68,7 +68,7 @@ export function Scoreboard({ teams, compact = false }: { teams: Team[]; compact?
             <div className="flex min-w-0 items-center gap-2">
               <BibDot color={team.color} size={compact ? 12 : 16} />
               <span
-                className={`truncate font-display ${compact ? "text-lg" : ranked.length > 5 ? "text-[clamp(0.9rem,1.25vw,1.3rem)]" : "text-[clamp(1rem,1.6vw,1.6rem)]"} font-medium tracking-wide`}
+                className={`truncate font-display ${compact ? "text-lg" : ranked.length > 5 ? "text-[clamp(0.95rem,1.3vw,1.4rem)]" : "text-[clamp(1.1rem,1.7vw,1.7rem)]"} tracking-wide`}
               >
                 {team.name}
               </span>

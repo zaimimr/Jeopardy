@@ -83,7 +83,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
             {board.title}
           </h1>
           {board.subtitle ? (
-            <p className="font-display mt-1 truncate text-[clamp(0.9rem,1.4vw,1.5rem)] italic text-brass-light">{board.subtitle}</p>
+            <p className="font-display mt-1 truncate text-[clamp(1rem,1.5vw,1.6rem)] text-brass-light">{board.subtitle}</p>
           ) : null}
         </div>
         <div className="flex shrink-0 items-center gap-5">
@@ -120,7 +120,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
         {board.content.categories.map((category) => (
           <h2
             key={category.id}
-            className="brass-plate flex min-h-[6vh] items-center justify-center rounded-sm px-2 text-center font-display text-[clamp(0.85rem,1.55vw,1.7rem)] font-semibold leading-[1.05] tracking-wide text-balance [&>span]:line-clamp-2"
+            className="brass-plate flex min-h-[6vh] items-center justify-center rounded-sm px-2 text-center font-display text-[clamp(0.95rem,1.7vw,1.9rem)] leading-[1.05] tracking-wide text-balance [&>span]:line-clamp-2"
             style={{ gridRow: 1 }}
           >
             <span>{category.title}</span>

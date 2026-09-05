@@ -52,7 +52,7 @@
   --color-cream-faint: var(--cream-faint);
   --color-lamp: var(--lamp);
   --color-panel-unlit: var(--panel-unlit);
-  --font-display: var(--font-display), "Bodoni MT", "Didot", Georgia, serif;
+  --font-display: var(--font-display), "Iowan Old Style", "Palatino", Georgia, serif;
   --font-ui: var(--font-ui), "Futura", "Avenir Next", system-ui, sans-serif;
   --ease-stage: cubic-bezier(0.16, 1, 0.3, 1);
 }

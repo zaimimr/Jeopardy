@@ -75,7 +75,7 @@ export function Marquee({ title, subtitle }: { title: string; subtitle?: string 
       <h1 className="font-display text-balance text-4xl font-medium leading-[1.02] tracking-tight text-cream md:text-6xl">
         {title}
       </h1>
-      {subtitle ? <p className="font-display text-xl italic text-brass-light md:text-2xl">{subtitle}</p> : null}
+      {subtitle ? <p className="font-display text-xl text-brass-light md:text-2xl">{subtitle}</p> : null}
     </div>
   );
 }
