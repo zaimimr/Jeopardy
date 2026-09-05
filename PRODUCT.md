@@ -64,4 +64,4 @@ Two-device play built in: the board on the TV and the remote on the phone are th
 
 - Board contrast must hold at distance and on a mediocre TV: no thin type, no low-contrast decorative text carrying meaning.
 - Remote must be usable one-handed on a small phone, tap targets at least 44px.
-- Keyboard operable board (arrow keys / enter / escape) for laptop-only use.
+- Keyboard operable board (arrow keys move between tiles, Enter/Space opens and advances, Esc closes) for laptop-only use.

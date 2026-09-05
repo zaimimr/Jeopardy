@@ -264,7 +264,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
                       aria-label={`${category.title}, ${clue.points} poeng${done ? ", ferdig" : ", mangler innhold"}`}
                     >
                       <span className="numeral text-2xl">{clue.points}</span>
-                      <span className={`line-clamp-2 text-xs leading-snug ${done ? "text-cream-dim" : "text-cream-faint"}`}>
+                      <span className={`line-clamp-2 text-xs leading-snug ${done ? "text-cream-dim" : "text-cream-dim/90"}`}>
                         {clue.question.text?.trim() || (clue.question.image ? "Bilde" : "Tomt")}
                       </span>
                     </button>
@@ -337,6 +337,14 @@ function ShareLink({ boardId, editKey }: { boardId: string; editKey: string }) {
   );
 }
 
+function Chevron({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {direction === "left" ? <path d="M10 3 5 8l5 5" /> : <path d="m6 3 5 5-5 5" />}
+    </svg>
+  );
+}
+
 function CategoryHeader({
   category,
   canRemove,
@@ -357,18 +365,18 @@ function CategoryHeader({
         onChange={(e) => onRename(e.target.value)}
         maxLength={60}
         aria-label="Kategorinavn"
-        className="w-full rounded-sm bg-black/10 px-2 py-1.5 text-center font-display text-base font-semibold text-brass-ink placeholder:text-brass-ink/50 focus:bg-black/15"
+        className="w-full rounded-sm bg-black/10 px-2 py-1.5 text-center font-display text-base font-semibold text-brass-ink placeholder:text-brass-ink/70 focus:bg-black/15"
         placeholder="Kategori"
       />
-      <div className="flex items-center justify-between text-brass-ink/80">
-        <button type="button" onClick={() => onMove(-1)} className="tap min-h-7 w-8 rounded text-base hover:bg-black/10" aria-label="Flytt til venstre">
-          ←
+      <div className="flex items-center justify-between text-brass-ink">
+        <button type="button" onClick={() => onMove(-1)} className="tap flex min-h-7 w-8 items-center justify-center rounded hover:bg-black/10" aria-label="Flytt til venstre">
+          <Chevron direction="left" />
         </button>
         <button type="button" onClick={onRemove} disabled={!canRemove} className="tap min-h-7 rounded px-2 text-xs uppercase tracking-wider hover:bg-black/10 disabled:opacity-30">
           Slett
         </button>
-        <button type="button" onClick={() => onMove(1)} className="tap min-h-7 w-8 rounded text-base hover:bg-black/10" aria-label="Flytt til høyre">
-          →
+        <button type="button" onClick={() => onMove(1)} className="tap flex min-h-7 w-8 items-center justify-center rounded hover:bg-black/10" aria-label="Flytt til høyre">
+          <Chevron direction="right" />
         </button>
       </div>
     </div>
@@ -509,7 +517,7 @@ function MediaEditor({
             <Button variant="outline" className="min-h-10 px-3 text-sm" onClick={() => inputRef.current?.click()} disabled={uploading}>
               Velg bilde
             </Button>
-            <p className="text-xs text-cream-faint">JPG, PNG, WebP eller GIF. Bildet skaleres ned automatisk.</p>
+            <p className="text-xs text-cream-dim">JPG, PNG, WebP eller GIF. Bildet skaleres ned automatisk.</p>
           </>
         )}
         <input ref={inputRef} type="file" accept="image/*" className="sr-only" onChange={(e) => void handleFile(e.target.files?.[0])} />

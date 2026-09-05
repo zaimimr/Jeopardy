@@ -53,6 +53,15 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
         void dispatch({ type: "undo" });
       } else if (event.key.toLowerCase() === "q") {
         setShowQr((value) => !value);
+      } else if (event.key.startsWith("Arrow") && !state.active && !showQr) {
+        const tiles = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tile]"));
+        if (tiles.length === 0) return;
+        const columns = board.content.categories.length;
+        const index = tiles.indexOf(document.activeElement as HTMLButtonElement);
+        const step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns }[event.key] ?? 0;
+        const next = index < 0 ? 0 : Math.min(tiles.length - 1, Math.max(0, index + step));
+        event.preventDefault();
+        tiles[next]?.focus();
       } else if (event.key.toLowerCase() === "f") {
         if (document.fullscreenElement) void document.exitFullscreen();
         else void document.documentElement.requestFullscreen().catch(() => undefined);
@@ -60,7 +69,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [advance, dispatch, showQr, state.active]);
+  }, [advance, dispatch, showQr, state.active, board.content.categories.length]);
 
   return (
     <main className="stage-spotlight relative flex h-dvh w-full flex-col overflow-hidden px-[2.2vw] pb-[1.6vh] pt-[1.4vh] text-cream">
@@ -73,6 +82,14 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
             <p className="font-display mt-1 truncate text-[clamp(0.9rem,1.4vw,1.5rem)] italic text-brass-light">{board.subtitle}</p>
           ) : null}
         </div>
+        <div className="flex shrink-0 items-center gap-5">
+          <span className="flex items-center gap-2 text-[0.8rem] uppercase tracking-[0.2em] text-cream-dim">
+            <span
+              aria-hidden
+              className={`inline-block h-2 w-2 rounded-full ${status === "live" ? "bg-[var(--bib-green)]" : "bg-brass"}`}
+            />
+            {statusLabel[status]}
+          </span>
         <button
           type="button"
           onClick={() => setShowQr(true)}
@@ -89,6 +106,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
             </span>
           ) : null}
         </button>
+        </div>
       </header>
 
       <section
@@ -102,10 +120,10 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
         {board.content.categories.map((category) => (
           <h2
             key={category.id}
-            className="brass-plate flex min-h-[6vh] items-center justify-center rounded-sm px-2 text-center font-display text-[clamp(0.85rem,1.55vw,1.7rem)] font-semibold leading-[1.05] tracking-wide text-balance"
+            className="brass-plate flex min-h-[6vh] items-center justify-center rounded-sm px-2 text-center font-display text-[clamp(0.85rem,1.55vw,1.7rem)] font-semibold leading-[1.05] tracking-wide text-balance [&>span]:line-clamp-2"
             style={{ gridRow: 1 }}
           >
-            {category.title}
+            <span>{category.title}</span>
           </h2>
         ))}
         {Array.from({ length: rows }, (_, rowIndex) =>
@@ -119,6 +137,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
                 key={clue.id}
                 type="button"
                 onClick={() => dispatch({ type: "openClue", clueId: clue.id })}
+                data-tile
                 className={`numeral relative flex items-center justify-center rounded-sm text-[clamp(1.6rem,4.2vw,5rem)] transition-[transform,box-shadow,color,background] duration-300 ease-[var(--ease-stage)] ${
                   used && !isActive ? "panel-unlit hover:text-cream-dim" : "panel-lit hover:-translate-y-0.5 hover:brightness-110"
                 } ${isActive ? "opacity-0" : ""}`}
@@ -135,14 +154,6 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
       <footer className="pt-[1.6vh]">
         <Scoreboard teams={state.teams} />
       </footer>
-
-      <div className="pointer-events-none absolute bottom-1 right-[2.2vw] flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em] text-cream-faint">
-        <span
-          aria-hidden
-          className={`inline-block h-1.5 w-1.5 rounded-full ${status === "live" ? "bg-[var(--bib-green)]" : "bg-brass"}`}
-        />
-        {statusLabel[status]}
-      </div>
 
       {state.active && active ? (
         <ClueOverlay
@@ -177,7 +188,7 @@ export function GameBoard({ initial }: { initial: GameWithBoard }) {
             eller gå til <span className="text-cream">{origin.replace(/^https?:\/\//, "")}/koble-til</span> og skriv{" "}
             <span className="numeral text-brass-light tracking-[0.15em]">{game.code}</span>
           </p>
-          <p className="text-sm uppercase tracking-[0.2em] text-cream-faint">Trykk hvor som helst for å lukke</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-cream-dim">Trykk hvor som helst for å lukke</p>
         </div>
       ) : null}
     </main>
