@@ -287,26 +287,24 @@ function ActiveClue({
   pending: boolean;
 }) {
   return (
-    <div className="anim-envelope flex flex-col gap-4">
+    <div className="anim-envelope flex flex-1 flex-col gap-4">
       <div className="flex items-center justify-between gap-3">
         <span className="brass-plate truncate rounded-sm px-3 py-1.5 font-display text-base font-semibold">{categoryTitle}</span>
         <span className="numeral text-3xl text-lamp">{formatPoints(points)}</span>
       </div>
-      <div className="brass-rim rounded-md bg-stage-floor/70 p-4">
-        <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-brass">Spørsmål</p>
-        <p className="text-lg leading-snug">{questionText?.trim() || <span className="italic text-cream-dim">Bilde eller tomt</span>}</p>
+      <div className="brass-rim flex flex-1 flex-col items-center justify-center gap-5 rounded-md bg-stage-floor/70 px-5 py-8 text-center">
+        <p className={`text-balance leading-[1.15] ${phase === "answer" ? "text-[clamp(1.25rem,5vw,2rem)] text-cream-dim" : "text-[clamp(1.6rem,7vw,3rem)] font-medium"}`}>
+          {questionText?.trim() || <span className="italic text-cream-dim">Bilde eller tomt</span>}
+        </p>
         {phase === "answer" ? (
-          <>
-            <p className="mb-1 mt-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-brass">Svar</p>
-            <p className="font-display text-xl leading-snug text-brass-light">
-              {answerText?.trim() || <span className="italic text-cream-dim">Bilde eller tomt</span>}
-            </p>
-          </>
+          <p className="font-display text-balance text-[clamp(2rem,9vw,3.6rem)] font-medium leading-[1.05] text-brass-light">
+            {answerText?.trim() || <span className="italic text-cream-dim">Bilde eller tomt</span>}
+          </p>
         ) : null}
       </div>
 
       {phase === "question" ? (
-        <Button className="min-h-16 text-xl" onClick={onShowAnswer} disabled={pending}>
+        <Button variant="outline" className="min-h-12 text-base" onClick={onShowAnswer} disabled={pending}>
           Vis svar på skjermen
         </Button>
       ) : (

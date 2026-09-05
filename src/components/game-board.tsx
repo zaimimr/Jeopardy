@@ -212,7 +212,7 @@ function ClueOverlay({
     <div
       role="dialog"
       aria-label={`${categoryTitle}, ${formatPoints(points)} poeng`}
-      className="anim-spotlight absolute inset-0 z-20 flex flex-col bg-stage-deep/95 px-[3vw] pb-[2vh] pt-[2.4vh]"
+      className="anim-spotlight stage-spotlight absolute inset-0 z-20 flex flex-col px-[3vw] pb-[2vh] pt-[2.4vh]"
     >
       <div className="flex items-center justify-between gap-4">
         <span className="brass-plate rounded-sm px-4 py-2 font-display text-[clamp(1rem,1.8vw,1.8rem)] font-semibold tracking-wide">
@@ -232,10 +232,18 @@ function ClueOverlay({
         {phase === "question" ? (
           <ClueMedia media={question} variant="question" />
         ) : (
-          <div className="anim-envelope flex h-full min-h-0 flex-col">
-            <div className="brass-rim flex min-h-0 flex-1 flex-col rounded-md bg-stage-floor/70 p-[2vh]">
-              <span className="mb-[1vh] text-center text-[0.75rem] font-semibold uppercase tracking-[0.3em] text-brass">Svar</span>
-              <div className="min-h-0 flex-1">
+          <div className="anim-envelope flex h-full min-h-0 flex-col items-center justify-center gap-[3vh]">
+            {question.text?.trim() ? (
+              <p className="max-w-[30ch] shrink-0 text-balance text-center text-[clamp(1.3rem,2.6vw,2.8rem)] leading-[1.15] text-cream-dim">
+                {question.text}
+              </p>
+            ) : null}
+            <div
+              className={`brass-rim flex min-h-0 w-full flex-col rounded-md bg-stage-floor/70 p-[2vh] ${
+                answer.image ? "flex-1" : "min-h-[32vh] justify-center py-[5vh]"
+              }`}
+            >
+              <div className={answer.image ? "min-h-0 flex-1" : ""}>
                 <ClueMedia media={answer} variant="answer" develop />
               </div>
             </div>
@@ -251,6 +259,7 @@ function ClueOverlay({
                   <span className="flex items-center gap-2 px-2 text-[clamp(0.9rem,1.3vw,1.3rem)]">
                     <BibDot color={team.color} size={12} />
                     <span className="max-w-[12ch] truncate">{team.name}</span>
+                    <span className="numeral text-cream-dim">{formatPoints(team.score)}</span>
                   </span>
                   <button
                     type="button"
@@ -281,7 +290,9 @@ function ClueOverlay({
           <button
             type="button"
             onClick={phase === "question" ? onAdvance : onClose}
-            className="brass-plate tap rounded-md px-6 text-[clamp(1rem,1.4vw,1.4rem)] font-semibold"
+            className={`tap rounded-md px-5 text-[clamp(0.9rem,1.1vw,1.1rem)] ${
+              phase === "question" ? "brass-rim bg-stage-floor/70 text-cream-dim hover:text-cream" : "brass-plate font-semibold"
+            }`}
           >
             {phase === "question" ? "Vis svar" : "Lukk"}
           </button>
