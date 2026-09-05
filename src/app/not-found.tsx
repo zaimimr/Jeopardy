@@ -7,7 +7,6 @@ export default function NotFound() {
     <div className="stage-spotlight flex min-h-dvh flex-col">
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center gap-6 px-5 pb-24 text-center">
-        <p className="brass-plate rounded-sm px-4 py-2 font-display text-lg font-semibold tracking-wide">Ingen treff</p>
         <h1 className="font-display text-balance text-4xl font-medium leading-tight md:text-5xl">Fant ikke siden</h1>
         <p className="max-w-[40ch] text-pretty text-lg text-cream-dim">
           Har du skrevet en romkode? Sjekk de fire bokstavene øverst til høyre på storskjermen og prøv igjen.

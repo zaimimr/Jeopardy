@@ -365,7 +365,7 @@ function CategoryHeader({
         onChange={(e) => onRename(e.target.value)}
         maxLength={60}
         aria-label="Kategorinavn"
-        className="w-full rounded-sm bg-black/10 px-2 py-1.5 text-center font-display text-base font-semibold text-brass-ink placeholder:text-brass-ink/70 focus:bg-black/15"
+        className="w-full rounded-sm bg-transparent px-2 py-1.5 text-center font-display text-base font-semibold text-brass-ink placeholder:italic placeholder:text-brass-ink focus:bg-black/15"
         placeholder="Kategori"
       />
       <div className="flex items-center justify-between text-brass-ink">
