@@ -8,6 +8,7 @@ import { createCategory, createClue, hasMedia, MAX_COLUMNS, MAX_ROWS, POINT_STEP
 import { createGame } from "@/lib/actions/games";
 import { localBoardKey, rememberBoard } from "@/lib/local-boards";
 import { themeList, themeStyle, type ThemeId } from "@/lib/themes";
+import { useClueDrag, type Slot } from "@/lib/use-clue-drag";
 import { useClientValue, useOrigin } from "@/lib/use-client-value";
 import type { Board, BoardContent, Category, Clue, Media } from "@/lib/types";
 import { uploadImage } from "@/lib/upload";
@@ -16,7 +17,7 @@ import { Button, Input, Textarea } from "./ui";
 
 type SaveState = "idle" | "dirty" | "saving" | "saved" | "error";
 
-type Selection = { categoryId: string; clueId: string } | null;
+type Selection = string | null;
 
 export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromUrl: string | null }) {
   const router = useRouter();
@@ -88,14 +89,46 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
   const updateContent = (mutate: (content: BoardContent) => BoardContent) =>
     update((draft) => ({ ...draft, content: mutate(draft.content) }));
 
-  const updateClue = (categoryId: string, clueId: string, mutate: (clue: Clue) => Clue) =>
+  const updateClue = (clueId: string, mutate: (clue: Clue) => Clue) =>
     updateContent((content) => ({
-      categories: content.categories.map((category) =>
-        category.id === categoryId
-          ? { ...category, clues: category.clues.map((clue) => (clue.id === clueId ? mutate(clue) : clue)) }
-          : category,
-      ),
+      ...content,
+      categories: content.categories.map((category) => ({
+        ...category,
+        clues: category.clues.map((clue) => (clue.id === clueId ? mutate(clue) : clue)),
+      })),
     }));
+
+  const moveClue = (from: Slot, to: Slot) =>
+    updateContent((content) => {
+      const source = content.categories.find((category) => category.id === from.categoryId);
+      const target = content.categories.find((category) => category.id === to.categoryId);
+      if (!source?.clues[from.row] || !target?.clues[to.row]) return content;
+      if (source.id === target.id) {
+        const values = source.clues.map((clue) => clue.points);
+        const clues = [...source.clues];
+        const [moved] = clues.splice(from.row, 1);
+        clues.splice(to.row, 0, moved);
+        const reordered = clues.map((clue, index) => ({ ...clue, points: values[index] }));
+        return { ...content, categories: content.categories.map((c) => (c.id === source.id ? { ...c, clues: reordered } : c)) };
+      }
+      const moved = source.clues[from.row];
+      const displaced = target.clues[to.row];
+      const swap = (category: Category) => {
+        if (category.id === source.id) {
+          return { ...category, clues: category.clues.map((clue, index) => (index === from.row ? { ...displaced, points: clue.points } : clue)) };
+        }
+        if (category.id === target.id) {
+          return { ...category, clues: category.clues.map((clue, index) => (index === to.row ? { ...moved, points: clue.points } : clue)) };
+        }
+        return category;
+      };
+      return { ...content, categories: content.categories.map(swap) };
+    });
+
+  const columnPoints = (categoryId: string) =>
+    board?.content.categories.find((category) => category.id === categoryId)?.clues.map((clue) => clue.points) ?? [];
+
+  const { drag, registerCell, handleProps, cellStyle, isDropTarget, pointsAtRow } = useClueDrag({ onMove: moveClue, columnPoints });
 
   const rows = useMemo(() => board?.content.categories.reduce((max, c) => Math.max(max, c.clues.length), 0) ?? 0, [board]);
 
@@ -139,10 +172,8 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
     );
   }
 
-  const selected = selection
-    ? board.content.categories.find((c) => c.id === selection.categoryId)?.clues.find((c) => c.id === selection.clueId) ?? null
-    : null;
-  const selectedCategory = selection ? board.content.categories.find((c) => c.id === selection.categoryId) ?? null : null;
+  const selectedCategory = selection ? board.content.categories.find((c) => c.clues.some((clue) => clue.id === selection)) ?? null : null;
+  const selected = selectedCategory?.clues.find((clue) => clue.id === selection) ?? null;
 
   return (
     <div style={themeStyle(board.content.theme)} className="stage-spotlight flex min-h-dvh flex-col">
@@ -190,7 +221,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
                 variant="outline"
                 className="px-3 text-sm"
                 disabled={board.content.categories.length >= MAX_COLUMNS}
-                onClick={() => updateContent((c) => ({ categories: [...c.categories, createCategory(`Kategori ${c.categories.length + 1}`, rows || 1)] }))}
+                onClick={() => updateContent((c) => ({ ...c, categories: [...c.categories, createCategory(`Kategori ${c.categories.length + 1}`, rows || 1)] }))}
               >
                 + Kategori
               </Button>
@@ -200,6 +231,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
                 disabled={rows >= MAX_ROWS}
                 onClick={() =>
                   updateContent((c) => ({
+                    ...c,
                     categories: c.categories.map((category) => ({
                       ...category,
                       clues: [...category.clues, createClue((category.clues.length + 1) * POINT_STEP)],
@@ -214,7 +246,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
                 className="px-3 text-sm"
                 disabled={rows <= 1}
                 onClick={() => {
-                  updateContent((c) => ({ categories: c.categories.map((category) => ({ ...category, clues: category.clues.slice(0, -1) })) }));
+                  updateContent((c) => ({ ...c, categories: c.categories.map((category) => ({ ...category, clues: category.clues.slice(0, -1) })) }));
                   setSelection(null);
                 }}
               >
@@ -222,7 +254,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
               </Button>
             </div>
           </div>
-          <p className="text-sm text-cream-dim">Klikk på en rute for å skrive spørsmål og svar. Ruter med brass-kant er ferdige.</p>
+          <p className="text-sm text-cream-dim">Klikk på en rute for å skrive spørsmål og svar. Dra i håndtaket for å flytte ruta opp eller ned - poengsummen følger raden.</p>
 
           <div className="overflow-x-auto pb-2">
             <div
@@ -234,10 +266,10 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
                   key={category.id}
                   category={category}
                   canRemove={board.content.categories.length > 1}
-                  onRename={(title) => updateContent((c) => ({ categories: c.categories.map((x) => (x.id === category.id ? { ...x, title } : x)) }))}
+                  onRename={(title) => updateContent((c) => ({ ...c, categories: c.categories.map((x) => (x.id === category.id ? { ...x, title } : x)) }))}
                   onRemove={() => {
-                    updateContent((c) => ({ categories: c.categories.filter((x) => x.id !== category.id) }));
-                    if (selection?.categoryId === category.id) setSelection(null);
+                    updateContent((c) => ({ ...c, categories: c.categories.filter((x) => x.id !== category.id) }));
+                    if (category.clues.some((clue) => clue.id === selection)) setSelection(null);
                   }}
                   onMove={(direction) =>
                     updateContent((c) => {
@@ -245,7 +277,7 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
                       const target = columnIndex + direction;
                       if (target < 0 || target >= categories.length) return c;
                       [categories[columnIndex], categories[target]] = [categories[target], categories[columnIndex]];
-                      return { categories };
+                      return { ...c, categories };
                     })
                   }
                 />
@@ -255,22 +287,48 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
                   const clue = category.clues[rowIndex];
                   if (!clue) return <div key={`${category.id}-${rowIndex}`} />;
                   const done = hasMedia(clue.question) && hasMedia(clue.answer);
-                  const isSelected = selection?.clueId === clue.id;
+                  const isSelected = selection === clue.id;
+                  const dragging = drag?.from.categoryId === category.id && drag.from.row === rowIndex;
+                  const dropTarget = isDropTarget(category.id, rowIndex);
+                  const points = pointsAtRow(category.id, rowIndex);
                   return (
-                    <button
+                    <div
                       key={clue.id}
-                      type="button"
-                      onClick={() => setSelection({ categoryId: category.id, clueId: clue.id })}
-                      className={`flex min-h-20 flex-col items-stretch justify-between rounded-sm p-2 text-left transition ${
-                        done ? "panel-lit" : "panel-unlit hover:text-cream-dim"
-                      } ${isSelected ? "ring-2 ring-brass-light" : ""}`}
-                      aria-label={`${category.title}, ${clue.points} poeng${done ? ", ferdig" : ", mangler innhold"}`}
+                      ref={registerCell(category.id, rowIndex)}
+                      style={cellStyle(category.id, rowIndex)}
+                      className={`relative ${dragging ? "z-20 scale-[1.02] drop-shadow-[0_12px_20px_rgba(0,0,0,0.55)]" : ""}`}
                     >
-                      <span className="numeral text-2xl">{clue.points}</span>
-                      <span className={`line-clamp-2 text-xs leading-snug ${done ? "text-cream-dim" : "text-cream-dim/90"}`}>
-                        {clue.question.text?.trim() || (clue.question.image ? "Bilde" : "Tomt")}
-                      </span>
-                    </button>
+                      <button
+                        type="button"
+                        onClick={() => setSelection(clue.id)}
+                        className={`flex min-h-20 w-full flex-col items-stretch justify-between rounded-sm p-2 pr-8 text-left transition ${
+                          done ? "panel-lit" : "panel-unlit hover:text-cream-dim"
+                        } ${isSelected || dragging ? "ring-2 ring-brass-light" : ""} ${dropTarget ? "ring-2 ring-dashed ring-brass" : ""}`}
+                        aria-label={`${category.title}, ${points} poeng${done ? ", ferdig" : ", mangler innhold"}`}
+                      >
+                        <span className="numeral text-2xl">{points}</span>
+                        <span className={`line-clamp-2 text-xs leading-snug ${done ? "opacity-75" : "text-cream-dim/90"}`}>
+                          {clue.question.text?.trim() || (clue.question.image ? "Bilde" : "Tomt")}
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        {...handleProps(category.id, rowIndex)}
+                        onKeyDown={(e) => {
+                          if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+                          e.preventDefault();
+                          const target = rowIndex + (e.key === "ArrowUp" ? -1 : 1);
+                          if (target < 0 || target >= category.clues.length) return;
+                          moveClue({ categoryId: category.id, row: rowIndex }, { categoryId: category.id, row: target });
+                        }}
+                        aria-label={`Flytt ${clue.points} poeng i ${category.title}`}
+                        className={`absolute right-0 top-0 flex h-full w-8 cursor-grab items-center justify-center rounded-r-sm text-brass/60 transition hover:bg-white/5 hover:text-brass-light focus-visible:text-brass-light ${
+                          dragging ? "cursor-grabbing text-brass-light" : ""
+                        }`}
+                      >
+                        <Grip />
+                      </button>
+                    </div>
                   );
                 }),
               )}
@@ -278,19 +336,32 @@ export function BoardEditor({ boardId, keyFromUrl }: { boardId: string; keyFromU
           </div>
         </section>
 
-        {selected && selectedCategory && selection ? (
+        {selected && selectedCategory ? (
           <ClueEditor
             key={selected.id}
             boardId={board.id}
             editKey={key}
             categoryTitle={selectedCategory.title}
             clue={selected}
-            onChange={(mutate) => updateClue(selection.categoryId, selection.clueId, mutate)}
+            onChange={(mutate) => updateClue(selected.id, mutate)}
             onClose={() => setSelection(null)}
           />
         ) : null}
       </main>
     </div>
+  );
+}
+
+function Grip() {
+  return (
+    <svg viewBox="0 0 10 16" width="10" height="16" aria-hidden fill="currentColor">
+      {[3, 8, 13].map((y) => (
+        <g key={y}>
+          <circle cx="3" cy={y} r="1.2" />
+          <circle cx="7" cy={y} r="1.2" />
+        </g>
+      ))}
+    </svg>
   );
 }
 
@@ -401,7 +472,7 @@ function CategoryHeader({
         onChange={(e) => onRename(e.target.value)}
         maxLength={60}
         aria-label="Kategorinavn"
-        className="w-full rounded-sm bg-transparent px-2 py-1.5 text-center font-display text-base font-semibold text-brass-ink placeholder:italic placeholder:text-brass-ink focus:bg-black/15"
+        className="w-full rounded-sm bg-transparent px-2 py-1.5 text-center font-display text-base font-semibold text-brass-ink placeholder:text-brass-ink/85 focus:bg-black/15"
         placeholder="Kategori"
       />
       <div className="flex items-center justify-between text-brass-ink">
